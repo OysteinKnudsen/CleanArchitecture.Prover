@@ -2,7 +2,7 @@ namespace CleanArchitecture.Prover.Domain.ValueTypes;
 
 public enum Gjennomføringsstatus
 {
-    IkkeStartet,
-    Startet,
-    Levert
+    IkkeStartet = 0,
+    Startet = 1,
+    Levert = 2
 }

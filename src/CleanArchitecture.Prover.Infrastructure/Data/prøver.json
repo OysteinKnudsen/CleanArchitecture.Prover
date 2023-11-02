@@ -1,0 +1,10 @@
+{
+  "$schema": "./prøverSchema.json",
+  "Navn": "Prøve i matte 10. trinn 2023",
+  "PrøvePeriode": {
+    "Start": "2023-10-01",
+    "Slutt": "2023-10-15"
+  },
+  "Trinn": 10,
+  "Fag": "Math"
+}
