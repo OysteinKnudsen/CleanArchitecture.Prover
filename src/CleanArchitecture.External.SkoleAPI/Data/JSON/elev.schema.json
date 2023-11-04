@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Elev",
+  "description": "En schema definisjon for en elev",
+  "type": "object",
+  "properties": {
+    "ElevId": {
+      "type": "integer",
+      "description": "Elevens unike identifikator"
+    },
+    "Navn": {
+      "type": "string",
+      "description": "Navnet til eleven"
+    },
+    "KlasseId": {
+      "type": "integer",
+      "description": "Identifikatoren til klassen eleven tilhører"
+    }
+  },
+  "required": ["ElevId", "Navn", "KlasseId"]
+}
