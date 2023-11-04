@@ -1,0 +1,17 @@
+[
+  {
+    "KlasseId": 1,
+    "Trinn": 7,
+    "Gruppe": "A",
+    "LærerId": 101,
+    "Elever": [1, 2]
+  },
+  {
+    "KlasseId": 2,
+    "Trinn": 5,
+    "Gruppe": "B",
+    "LærerId": 102,
+    "Elever": [3, 4]
+  }
+
+]

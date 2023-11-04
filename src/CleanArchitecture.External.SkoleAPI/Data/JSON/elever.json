@@ -1,0 +1,22 @@
+[
+  {
+    "ElevId": 1,
+    "Navn": "Ola Nordmann",
+    "KlasseId": 1
+  },
+  {
+    "ElevId": 2,
+    "Navn": "Kari Nordmann",
+    "KlasseId": 1
+  },
+  {
+    "ElevId": 3,
+    "Navn": "Per Hansen",
+    "KlasseId": 2
+  },
+  {
+    "ElevId": 4,
+    "Navn": "Lise Olsen",
+    "KlasseId": 2
+  }
+]

@@ -1,0 +1,12 @@
+[
+  {
+    "LærerId": 101,
+    "Navn": "Olav Folkestad",
+    "KlasseId": 1
+  },
+  {
+    "LærerId": 102,
+    "Navn": "Unni Hinkel",
+    "KlasseId": 2
+  }
+]

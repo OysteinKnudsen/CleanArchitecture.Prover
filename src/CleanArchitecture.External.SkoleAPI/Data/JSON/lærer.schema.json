@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lærer",
+  "description": "En schema definisjon for en lærer",
+  "type": "object",
+  "properties": {
+    "LærerId": {
+      "type": "number",
+      "description": "Lærerens unike identifikator"
+    },
+    "Navn": {
+      "type": "string",
+      "description": "Navnet til læreren"
+    },
+    "KlasseId": {
+      "type": "number",
+      "description": "Identifikatoren til klassen læreren underviser i"
+    }
+  },
+  "required": ["LærerId", "Navn", "KlasseId"]
+}

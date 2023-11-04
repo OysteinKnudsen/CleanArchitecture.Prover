@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Klasse",
+  "type": "object",
+  "properties": {
+    "KlasseId": {
+      "type": "number",
+      "description": "Den unike identifikatoren for klassen"
+    },
+    "Trinn": {
+      "type": "number",
+      "minimum": 1,
+      "maximum": 10,
+      "description": "Hvilket trinn klassen tilhører"
+    },
+    "Gruppe": {
+      "type": "string",
+      "description": "Gruppebokstaven for klassen",
+      "pattern": "^[A-Z]$",
+      "minLength": 1,
+      "maxLength": 1
+    },
+    "LærerId": {
+      "type": "number",
+      "description": "Den unike identifikatoren for klassens lærer"
+    },
+    "Elever": {
+      "type": "array",
+      "description": "En liste av elev-IDer som tilhører klassen",
+      "items": {
+        "type": "number"
+      }
+    }
+  },
+  "required": ["KlasseId", "Trinn", "Gruppe", "LærerId", "Elever"]
+}
