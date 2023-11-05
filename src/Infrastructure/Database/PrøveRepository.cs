@@ -50,7 +50,7 @@ internal class PrøveRepository : IPrøveRepository
         return new Prøve(
             (PrøveId)jsonPrøve.Id,
             (PrøveNavn)jsonPrøve.Navn,
-            new PrøvePeriode(jsonPrøve.PrøvePeriode.Start, jsonPrøve.PrøvePeriode.Stop),
+            new PrøvePeriode(jsonPrøve.PrøvePeriode.Start, jsonPrøve.PrøvePeriode.Slutt),
             (Trinn)jsonPrøve.Trinn,
             FagFactory.GetFag(jsonPrøve.Fag));
     }
