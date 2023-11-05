@@ -22,7 +22,9 @@ if (app.Environment.IsDevelopment())
 }
 
 //add endpoints
-app.AddPrøverEndpoints();
+app
+    .AddPrøverEndpoints()
+    .AddPrøveGrupperEndpoints();
 
 app.UseHttpsRedirection();
 app.Run();
