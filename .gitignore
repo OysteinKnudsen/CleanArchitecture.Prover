@@ -104,4 +104,8 @@ fabric.properties
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
 
+# Rider cache/options directory
+.idea/
+src/.idea/
+
 # End of https://www.toptal.com/developers/gitignore/api/rider,dotnetcore,git
