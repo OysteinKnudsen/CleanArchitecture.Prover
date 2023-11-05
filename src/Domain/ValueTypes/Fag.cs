@@ -2,7 +2,7 @@ namespace CleanArchitecture.Prover.Domain.ValueTypes;
 
 public enum Fag
 {
-    Matematikk, 
-    Norsk, 
-    Engelsk
+    Matematikk = 0, 
+    Norsk = 1, 
+    Engelsk = 2
 }

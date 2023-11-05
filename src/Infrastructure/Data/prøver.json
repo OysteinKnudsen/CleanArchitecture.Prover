@@ -1,10 +1,32 @@
-{
-  "$schema": "./prøverSchema.json",
-  "Navn": "Prøve i matte 10. trinn 2023",
-  "PrøvePeriode": {
-    "Start": "2023-10-01",
-    "Slutt": "2023-10-15"
+[
+  {
+    "Id": 1,
+    "Navn": "Prøve i matte 10. trinn 2023",
+    "PrøvePeriode": {
+      "Start": "2023-10-01",
+      "Slutt": "2023-10-15"
+    },
+    "Trinn": 10,
+    "Fag": "Matematikk"
   },
-  "Trinn": 10,
-  "Fag": "Math"
-}
+  {
+    "Id": 2,
+    "Navn": "Prøve i norsk 10. trinn 2023",
+    "PrøvePeriode": {
+      "Start": "2023-10-01",
+      "Slutt": "2023-10-15"
+    },
+    "Trinn": 10,
+    "Fag": "Norsk"
+  },
+  {
+    "Id": 3,
+    "Navn": "Prøve i engelsk 10. trinn 2023",
+    "PrøvePeriode": {
+      "Start": "2023-10-01",
+      "Slutt": "2023-10-15"
+    },
+    "Trinn": 10,
+    "Fag": "Engelsk"
+  }
+]

@@ -1,3 +1,4 @@
+using CleanArchitecture.Prover.Application;
 using CleanArchitecture.Prover.Infrastructure;
 using CleanArchitecture.Prover.Web.Endpoints;
 
@@ -5,9 +6,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services
+    .AddEndpointsApiExplorer()
+    .AddSwaggerGen()
+    .AddApplication()
+    .AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();
 
@@ -18,6 +21,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.AddPrøverEndpoints();
+//add endpoints
+app
+    .AddPrøverEndpoints()
+    .AddPrøveGrupperEndpoints();
+
 app.UseHttpsRedirection();
 app.Run();
