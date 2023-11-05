@@ -1,5 +1,6 @@
-using CleanArchitecture.Prover.Application.Prøver;
 using CleanArchitecture.Prover.Infrastructure;
+using CleanArchitecture.Prover.Web.Endpoints;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -17,8 +18,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// Add get endpoint for prøver
-app.MapGet("api/prøver", (IGetPrøver getPrøver) => Results.Ok(getPrøver.GetAllPrøver()));
-
+app.AddPrøverEndpoints();
 app.UseHttpsRedirection();
 app.Run();
