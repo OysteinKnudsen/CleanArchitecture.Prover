@@ -1,6 +1,6 @@
 using CleanArchitecture.Prover.Domain.Entities;
 
-namespace CleanArchitecture.Prover.Web.ViewModels;
+namespace CleanArchitecture.Prover.Web.Models;
 
 public record PrøveViewModel(int Id, string Navn, DateTimeOffset Start, DateTimeOffset Slutt, int Trinn, string Fag)
 {
