@@ -41,6 +41,6 @@ app
 
 app.UseHttpsRedirection();
 
-app.Logger.LogDebug("CleanArchitecture.Prover.Web - done setting up app");
+CleanArchitecture.Prover.Web.Logging.Log.DoneSettingUpApp(app.Logger);
 
 app.Run();
