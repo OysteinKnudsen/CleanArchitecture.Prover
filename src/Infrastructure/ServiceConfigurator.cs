@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CleanArchitecture.Prover.Infrastructure;
 
-public static class DependencyInjection
+public static class ServiceConfigurator
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {

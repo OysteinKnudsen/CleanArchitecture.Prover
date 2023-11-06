@@ -1,6 +1,6 @@
 namespace CleanArchitecture.Prover.Infrastructure.Database.Models;
 
-internal class JsonPrøve
+internal sealed class JsonPrøve
 {
     public int Id { get; set; }
     public string Navn { get; set; } = default!;

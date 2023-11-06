@@ -8,19 +8,21 @@ using CleanArchitecture.Prover.Infrastructure.Database.Models;
 
 namespace CleanArchitecture.Prover.Infrastructure.Database;
 
-internal class PrøveRepository : IPrøveRepository
+internal sealed class PrøveRepository : IPrøveRepository
 {
     private readonly IEnumerable<JsonPrøve>? _prøver;
+
+    private static readonly JsonSerializerOptions
+        JsonSerializerOptions = new() { PropertyNameCaseInsensitive = false };
 
     public PrøveRepository()
     {
         var stream =
             Assembly.GetAssembly(typeof(PrøveRepository))!.GetManifestResourceStream(
                 "CleanArchitecture.Prover.Infrastructure.Data.prøver.json");
-        var streamReader = new StreamReader(stream!);
+        using var streamReader = new StreamReader(stream!);
         var json = streamReader.ReadToEnd();
-        _prøver = JsonSerializer.Deserialize<IEnumerable<JsonPrøve>>(json,
-            new JsonSerializerOptions { PropertyNameCaseInsensitive = false });
+        _prøver = JsonSerializer.Deserialize<IEnumerable<JsonPrøve>>(json, JsonSerializerOptions);
     }
 
     public Task<IEnumerable<Prøve>> GetAllAsync(CancellationToken cancellationToken)

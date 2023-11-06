@@ -24,4 +24,8 @@
       </EmbeddedResource>
     </ItemGroup>
 
+    <PropertyGroup>
+        <AnalysisMode>All</AnalysisMode>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    </PropertyGroup>
 </Project>
