@@ -3,7 +3,6 @@ using CleanArchitecture.Prover.Application.Prøver.Queries;
 using CleanArchitecture.Prover.Domain.ValueTypes;
 using CleanArchitecture.Prover.Web.Models;
 using MediatR;
-using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace CleanArchitecture.Prover.Web.Endpoints;
 
