@@ -4,7 +4,7 @@ using MediatR;
 
 namespace CleanArchitecture.Prover.Application.Prøver.QueryHandlers;
 
-internal class GetPrøverHandler(IPrøveRepository prøveRepository) : IRequestHandler<Queries.GetPrøver,IEnumerable<Prøve>>
+internal sealed class GetPrøverHandler(IPrøveRepository prøveRepository) : IRequestHandler<Queries.GetPrøver,IEnumerable<Prøve>>
 {
     public Task<IEnumerable<Prøve>> Handle(Queries.GetPrøver query, CancellationToken cancellationToken)
     {
