@@ -1,5 +1,6 @@
 using CleanArchitecture.Prover.Application.Abstractions;
 using CleanArchitecture.Prover.Infrastructure.Database;
+using CleanArchitecture.Prover.Infrastructure.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,6 +11,8 @@ public static class DependencyInjection
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddSingleton<IPrøveRepository, PrøveRepository>();
+        
+        services.AddTransient<ISkoleService, ApiSkoleService>();
         return services;
     }
 }
