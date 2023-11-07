@@ -7,7 +7,7 @@ public record PrøveViewModel(int Id, string Navn, DateTimeOffset Start, DateTim
     public static PrøveViewModel From(Prøve prøve)
     {
         return new PrøveViewModel(
-            prøve.PrøveId,
+            prøve.Id,
             prøve.Navn,
             prøve.PrøvePeriode.Start,
             prøve.PrøvePeriode.Slutt,
