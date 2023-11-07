@@ -1,6 +1,6 @@
 using System.Reflection;
 using System.Text.Json;
-using CleanArchitecture.Prover.Application.Abstractions;
+using CleanArchitecture.Prover.Application.Prøver;
 using CleanArchitecture.Prover.Application.Prøver.Exceptions;
 using CleanArchitecture.Prover.Domain.Entities;
 using CleanArchitecture.Prover.Domain.ValueTypes;
@@ -32,7 +32,7 @@ internal class PrøveRepository : IPrøveRepository
         return Task.FromResult(prøver);
     }
 
-    public Task<Prøve> GetPrøveAsync(PrøveId prøveId, CancellationToken cancellationToken)
+    public Task<Prøve> GetByIdAsync(PrøveId prøveId, CancellationToken cancellationToken)
     {
         if (_prøver is null)
         {
