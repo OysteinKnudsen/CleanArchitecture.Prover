@@ -1,6 +1,6 @@
 using System.Net;
+using CleanArchitecture.Prover.Application.Prøver;
 using CleanArchitecture.Prover.Web.Models;
-using MediatR;
 
 namespace CleanArchitecture.Prover.Web.Endpoints;
 
@@ -21,9 +21,9 @@ internal static class PrøveGrupperEndpoints
         return app;
     }
     
-    private static Action<int, CreatePrøveGruppeModel, IMediator, CancellationToken> CreatePrøveGruppe()
+    private static Action<CreatePrøveGruppeModel, IPrøveGruppeService, CancellationToken> CreatePrøveGruppe()
     {
-        return (int prøveId, CreatePrøveGruppeModel prøveGruppe, IMediator mediator,
+        return (CreatePrøveGruppeModel prøveGruppe, IPrøveGruppeService prøveGruppeService,
             CancellationToken cancellationToken) =>
         {
             //TODO: Send CreatePrøveGruppe command to mediator
@@ -31,9 +31,9 @@ internal static class PrøveGrupperEndpoints
         };
     }
     
-    private static Action<int, UpdatePrøveGruppeModel, IMediator, CancellationToken> UpdatePrøveGruppeStatus()
+    private static Action<int, UpdatePrøveGruppeModel, IPrøveGruppeService, CancellationToken> UpdatePrøveGruppeStatus()
     {
-        return (int id, UpdatePrøveGruppeModel prøveGruppe, IMediator mediator, CancellationToken cancellationToken) =>
+        return (int id, UpdatePrøveGruppeModel prøveGruppe, IPrøveGruppeService prøveGruppeService, CancellationToken cancellationToken) =>
         {
             //TODO: Send UpdatePrøveGruppe command to mediator
             Results.NoContent();

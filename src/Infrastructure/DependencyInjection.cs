@@ -1,4 +1,4 @@
-using CleanArchitecture.Prover.Application.Abstractions;
+using CleanArchitecture.Prover.Application.Prøver;
 using CleanArchitecture.Prover.Infrastructure.Database;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

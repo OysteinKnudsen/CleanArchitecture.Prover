@@ -1,9 +1,7 @@
 using System.Net;
-using CleanArchitecture.Prover.Application.Prøver.Queries;
+using CleanArchitecture.Prover.Application.Prøver;
 using CleanArchitecture.Prover.Domain.ValueTypes;
 using CleanArchitecture.Prover.Web.Models;
-using MediatR;
-using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace CleanArchitecture.Prover.Web.Endpoints;
 
@@ -33,39 +31,39 @@ internal static class PrøverEndpoints
         return app;
     }
 
-    private static Func<IMediator, CancellationToken, Task<IResult>> GetPrøver()
+    private static Func<IPrøveService, CancellationToken, Task<IResult>> GetPrøver()
     {
-        return async (mediator, cancellationToken) =>
+        return async (prøveService, cancellationToken) =>
         {
-            var prøver = await mediator.Send(new GetPrøver(), cancellationToken);
+            var prøver = await prøveService.GetAllAsync(cancellationToken);
             return Results.Ok(prøver.Select(PrøveViewModel.From));
         };
     }
 
-    private static Func<int, IMediator, CancellationToken, Task<IResult>> GetPrøve()
+    private static Func<int, IPrøveService, CancellationToken, Task<IResult>> GetPrøve()
     {
-        return async (id, mediator, cancellationToken) =>
+        return async (id, prøveService, cancellationToken) =>
         {
-            var prøve = await mediator.Send(new GetPrøve((PrøveId)id), cancellationToken);
+            var prøve = await prøveService.GetByIdAsync((PrøveId)id, cancellationToken);
             return Results.Ok(PrøveViewModel.From(prøve));
         };
     }
     
-    private static Action<CreatePrøveModel, IMediator, CancellationToken> CreatePrøve()
+    private static Action<CreatePrøveModel, IPrøveService, CancellationToken> CreatePrøve()
     {
-        return (CreatePrøveModel prøve, IMediator mediator, CancellationToken cancellationToken) =>
+        return (CreatePrøveModel prøve, IPrøveService prøveService, CancellationToken cancellationToken) =>
         {
-            //TODO: Send CreatePrøve command to mediator
+            //TODO: Implement required changes in prøveService
             Results.Accepted();
         };
     }
     
-    private static Action<int, int, UpdateElevModel, IMediator, CancellationToken> UpdateElev()
+    private static Action<int, int, UpdateElevModel, IPrøveService, CancellationToken> UpdateElev()
     {
-        return (int prøveId, int elevId, UpdateElevModel elev, IMediator mediator,
+        return (int prøveId, int elevId, UpdateElevModel elev, IPrøveService prøveService,
             CancellationToken cancellationToken) =>
         {
-            //TODO: Send UpdateElev command to mediator
+            //TODO: Implement required changes in prøveService
             Results.NoContent();
         };
     }

@@ -9,10 +9,6 @@
         <ProjectReference Include="..\Domain\Domain.csproj" />
     </ItemGroup>
     <ItemGroup>
-      <PackageReference Include="MediatR" Version="12.1.1" />
-    </ItemGroup>
-    <ItemGroup>
-      <Folder Include="Prøver\CommandHandlers\" />
-      <Folder Include="Prøver\Commands\" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
     </ItemGroup>
 </Project>
