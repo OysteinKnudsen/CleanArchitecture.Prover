@@ -13,24 +13,42 @@ public class ApiSkoleService(ISkoleApiClient skoleApiClient) : ISkoleService
         return lærere.Select(ToDomainModel);
     }
 
-    public Task<IEnumerable<Elev>> GetEleverAsync()
+    public async Task<IEnumerable<Elev>> GetEleverAsync()
     {
-        var elever = skoleApiClient.GetEleverAsync();
-        
-        throw new NotImplementedException();
+        var elever = await skoleApiClient.GetEleverAsync();
+        return elever.Select(ToDomainModel);
     }
 
-    public Task<IEnumerable<Klasse>> GetKlasserAsync()
+    public async Task<IEnumerable<Klasse>> GetKlasserAsync()
     {
-        throw new NotImplementedException();
+        var klasser = await skoleApiClient.GetKlasserAsync();
+        return klasser.Select(ToDomainModel);
     }
 
     private static Lærer ToDomainModel(LærerResponse apiResponse)
     {
-        // TODO: Fragile implementation and will likely not work in all cases.
-        var fornavn = apiResponse.Navn.Split(' ')[0];
-        var etternavn = apiResponse.Navn.Split(' ')[1];
-
+        var (fornavn, etternavn) = SplitNavn(apiResponse.Navn);
         return new Lærer((LærerId)apiResponse.LærerId, new LærerNavn(fornavn, etternavn), (KlasseId)apiResponse.KlasseId);
+    }
+
+    private static Elev ToDomainModel(ElevResponse apiResponse)
+    {
+        var (fornavn, etternavn) = SplitNavn(apiResponse.Navn);
+        // TODO: er det riktig å konstruere en Elev med tom liste av Prøvegjennomføringer?
+        return new Elev((ElevId)apiResponse.ElevId, new ElevNavn(fornavn, etternavn), (KlasseId)apiResponse.KlasseId, Enumerable.Empty<Prøvegjennomføring>());
+    }
+
+    private static Klasse ToDomainModel(KlasseResponse apiResponse)
+    {
+        return new Klasse((KlasseId) apiResponse.KlasseId, (LærerId) apiResponse.LærerId, (Trinn) apiResponse.Trinn,
+            apiResponse.Elever.Select(elevId => (ElevId) elevId));
+    }
+    
+    private static (string, string) SplitNavn(string navn)
+    {
+        // TODO: Fragile implementation and will likely not work in all cases.
+        var fornavn = navn.Split(' ')[0];
+        var etternavn = navn.Split(' ')[1];
+        return (fornavn, etternavn);
     }
 }
