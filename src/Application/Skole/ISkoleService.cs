@@ -1,6 +1,6 @@
 using CleanArchitecture.Prover.Domain.Entities;
 
-namespace CleanArchitecture.Prover.Application.Abstractions;
+namespace CleanArchitecture.Prover.Application.Skole;
 
 public interface ISkoleService
 {

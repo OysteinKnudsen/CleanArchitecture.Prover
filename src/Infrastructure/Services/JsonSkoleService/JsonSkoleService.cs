@@ -1,4 +1,4 @@
-using CleanArchitecture.Prover.Application.Abstractions;
+using CleanArchitecture.Prover.Application.Skole;
 using CleanArchitecture.Prover.Domain.Entities;
 
 namespace CleanArchitecture.Prover.Infrastructure.Services.JsonSkoleService;

@@ -1,4 +1,5 @@
-using CleanArchitecture.Prover.Application.Abstractions;
+using CleanArchitecture.Prover.Application.Prøver;
+using CleanArchitecture.Prover.Application.Skole;
 using CleanArchitecture.Prover.Infrastructure.Database;
 using CleanArchitecture.Prover.Infrastructure.Services;
 using Microsoft.Extensions.Configuration;
