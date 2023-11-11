@@ -2,4 +2,8 @@ using CleanArchitecture.Prover.Domain.ValueTypes;
 
 namespace CleanArchitecture.Prover.Domain.Entities;
 
-public class Prøvegruppe (Prøve Prøve, Lærer Prøvegruppeansvarlig, IList<Prøvegjennomføring> Prøvegjennomføringer, PrøvegruppeStatus Status);
+/// <summary>
+/// En prøvegruppe er en gruppe elever som skal gjennomføre en prøve.
+/// Prøvegruppen har en ansvarlig lærer for gjennomføringen.  
+/// </summary>
+public record Prøvegruppe (PrøvegruppeId PrøvegruppeId, PrøveId Prøve, LærerId Prøvegruppeansvarlig, IList<Prøvegjennomføring> Prøvegjennomføringer, PrøvegruppeStatus Status);
