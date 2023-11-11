@@ -12,6 +12,7 @@ builder.Services
     .AddApplication()
     .AddInfrastructure(builder.Configuration);
 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -24,7 +25,9 @@ if (app.Environment.IsDevelopment())
 //add endpoints
 app
     .AddPrøverEndpoints()
-    .AddPrøveGrupperEndpoints();
+    .AddPrøveGrupperEndpoints()
+    .AddSkoleEndpoints();
+
 
 app.UseHttpsRedirection();
 app.Run();

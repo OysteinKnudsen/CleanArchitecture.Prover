@@ -21,21 +21,19 @@ internal static class PrøveGrupperEndpoints
         return app;
     }
     
-    private static Action<CreatePrøveGruppeModel, IPrøveGruppeService, CancellationToken> CreatePrøveGruppe()
+    private static Action<CreatePrøvegruppeModel, IPrøvegruppeService, CancellationToken> CreatePrøveGruppe()
     {
-        return (CreatePrøveGruppeModel prøveGruppe, IPrøveGruppeService prøveGruppeService,
+        return (CreatePrøvegruppeModel prøveGruppe, IPrøvegruppeService prøveGruppeService,
             CancellationToken cancellationToken) =>
         {
-            //TODO: Send CreatePrøveGruppe command to mediator
             Results.Accepted();
         };
     }
     
-    private static Action<int, UpdatePrøveGruppeModel, IPrøveGruppeService, CancellationToken> UpdatePrøveGruppeStatus()
+    private static Action<int, UpdatePrøvegruppeModel, IPrøvegruppeService, CancellationToken> UpdatePrøveGruppeStatus()
     {
-        return (int id, UpdatePrøveGruppeModel prøveGruppe, IPrøveGruppeService prøveGruppeService, CancellationToken cancellationToken) =>
+        return (int id, UpdatePrøvegruppeModel prøveGruppe, IPrøvegruppeService prøveGruppeService, CancellationToken cancellationToken) =>
         {
-            //TODO: Send UpdatePrøveGruppe command to mediator
             Results.NoContent();
         };
     }

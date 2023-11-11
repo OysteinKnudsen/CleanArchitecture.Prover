@@ -13,9 +13,9 @@ internal static class SkoleEndpoints
         return routeBuilder;
     }
     
-    private static Func<int, ISkoleService, Task<IResult>> GetLærere()
+    private static Func<ISkoleService, Task<IResult>> GetLærere()
     {
-        return async (id, skoleService) =>
+        return async (skoleService) =>
         {
             var lærere = await skoleService.GetLærereAsync();
             return Results.Ok(lærere.Select(LærerViewModel.From));

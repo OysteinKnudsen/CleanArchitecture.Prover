@@ -12,7 +12,8 @@ public static class DependencyInjection
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddSingleton<IPrøveRepository, PrøveRepository>();
-        
+        services.AddHttpClient();
+        services.AddTransient<ISkoleApiClient, SkoleApiClient>();
         services.AddTransient<ISkoleService, ApiSkoleService>();
         return services;
     }

@@ -6,4 +6,4 @@ namespace CleanArchitecture.Prover.Domain.Entities;
 /// En prøvegruppe er en gruppe elever som skal gjennomføre en prøve.
 /// Prøvegruppen har en ansvarlig lærer for gjennomføringen.  
 /// </summary>
-public record Prøvegruppe (PrøveId Prøve, LærerId Prøvegruppeansvarlig, IList<Prøvegjennomføring> Prøvegjennomføringer, PrøvegruppeStatus Status);
+public record Prøvegruppe (PrøvegruppeId PrøvegruppeId, PrøveId Prøve, LærerId Prøvegruppeansvarlig, IList<Prøvegjennomføring> Prøvegjennomføringer, PrøvegruppeStatus Status);

@@ -8,6 +8,7 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
+        services.AddTransient<IPrøvegruppeService, PrøvegruppeService>();
         services.AddTransient<IPrøveService, PrøveService>();
         return services;
     }

@@ -17,6 +17,7 @@ public class SkoleApiClient: ISkoleApiClient
 {
     private readonly HttpClient _httpClient;
     private const string SkoleApiBaseAddress = "https://localhost:7165";
+    private readonly JsonSerializerOptions _jsonSerializerOptions = new() {PropertyNameCaseInsensitive = true};
 
     public SkoleApiClient(HttpClient httpClient)
     {
@@ -27,9 +28,10 @@ public class SkoleApiClient: ISkoleApiClient
     public async Task<IEnumerable<LærerResponse>> GetLærereAsync()
     {
         var response = await _httpClient.GetAsync("/lærere");
-        
+        response.EnsureSuccessStatusCode();
         var content = await response.Content.ReadAsStringAsync();
-        var lærere = JsonSerializer.Deserialize<IEnumerable<LærerResponse>>(content);
+        // TODO: burde man ha noe validering her for å sjekke at responsen er gyldig før man deserialiserer?
+        var lærere = JsonSerializer.Deserialize<IEnumerable<LærerResponse>>(content, _jsonSerializerOptions);
         return lærere ?? Enumerable.Empty<LærerResponse>();
     }
 
@@ -37,10 +39,8 @@ public class SkoleApiClient: ISkoleApiClient
     {
         var response = await _httpClient.GetAsync("/elever");
         response.EnsureSuccessStatusCode();
-        
         var content = await response.Content.ReadAsStringAsync();
-        var elever = JsonSerializer.Deserialize<IEnumerable<ElevResponse>>(content);
-        
+        var elever = JsonSerializer.Deserialize<IEnumerable<ElevResponse>>(content, _jsonSerializerOptions);
         return elever ?? Enumerable.Empty<ElevResponse>();
     }
 
@@ -48,10 +48,8 @@ public class SkoleApiClient: ISkoleApiClient
     {
         var response = await _httpClient.GetAsync("/klasser");
         response.EnsureSuccessStatusCode();
-        
         var content = await response.Content.ReadAsStringAsync();
-        var klasser = JsonSerializer.Deserialize<IEnumerable<KlasseResponse>>(content);
-        
+        var klasser = JsonSerializer.Deserialize<IEnumerable<KlasseResponse>>(content, _jsonSerializerOptions);
         return klasser ?? Enumerable.Empty<KlasseResponse>();
     }
 }

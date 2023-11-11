@@ -3,22 +3,15 @@ using CleanArchitecture.Prover.Domain.ValueTypes;
 
 namespace CleanArchitecture.Prover.Application.Prøver.Services;
 
-internal class PrøveService : IPrøveService
+internal class PrøveService(IPrøveRepository prøveRepository) : IPrøveService
 {
-    private readonly IPrøveRepository _prøveRepository;
-
-    public PrøveService(IPrøveRepository prøveRepository)
-    {
-        _prøveRepository = prøveRepository;
-    }
-    
     public Task<IEnumerable<Prøve>> GetAllAsync(CancellationToken cancellationToken)
     {
-        return _prøveRepository.GetAllAsync(cancellationToken);
+        return prøveRepository.GetAllAsync(cancellationToken);
     }
 
     public Task<Prøve> GetByIdAsync(PrøveId prøveId, CancellationToken cancellationToken)
     {
-        return _prøveRepository.GetByIdAsync(prøveId, cancellationToken);
+        return prøveRepository.GetByIdAsync(prøveId, cancellationToken);
     }
 }
