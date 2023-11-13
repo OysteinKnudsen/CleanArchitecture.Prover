@@ -2,4 +2,4 @@ using CleanArchitecture.Prover.Domain.ValueTypes;
 
 namespace CleanArchitecture.Prover.Domain.Entities;
 
-public class Elev (ElevId ElevId, ElevNavn Navn, Klasse Klasse, IEnumerable<Prøvegjennomføring>? Prøvegjennomføringer);
+public record Elev (ElevId Id, ElevNavn Navn, KlasseId Klasse, IEnumerable<Prøvegjennomføring>? Prøvegjennomføringer);

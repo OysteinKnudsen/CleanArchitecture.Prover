@@ -8,7 +8,7 @@ public abstract class DataService
 
     protected async Task<T> LoadJsonDataAsync<T>(string filePath)
     {
-        string fullPath = Path.Combine(BaseDirectory, filePath);
+        var fullPath = Path.Combine(BaseDirectory, filePath);
 
         if (!File.Exists(fullPath))
         {

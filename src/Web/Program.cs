@@ -12,19 +12,22 @@ builder.Services
     .AddApplication()
     .AddInfrastructure(builder.Configuration);
 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c => c.DocumentTitle = "Prøver API");
 }
 
 //add endpoints
 app
     .AddPrøverEndpoints()
-    .AddPrøveGrupperEndpoints();
+    .AddPrøveGrupperEndpoints()
+    .AddSkoleEndpoints();
+
 
 app.UseHttpsRedirection();
 app.Run();
