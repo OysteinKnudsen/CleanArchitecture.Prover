@@ -12,8 +12,9 @@ public class PrøvePeriodeTests
 
         var prøvePeriode = new PrøvePeriode(start, slutt);
 
-        Assert.That(prøvePeriode.Start, Is.EqualTo(start));
         Assert.That(prøvePeriode.Slutt, Is.EqualTo(slutt));
+        prøvePeriode.Slutt.Should().Be(slutt);
+        prøvePeriode.Start.Should().Be(start);
     }
 
     [Test]
