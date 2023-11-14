@@ -1,5 +1,6 @@
 using System.Net;
 using CleanArchitecture.Prover.Application.Prøver;
+using CleanArchitecture.Prover.Domain.ValueTypes;
 using CleanArchitecture.Prover.Web.Models;
 
 namespace CleanArchitecture.Prover.Web.Endpoints;
@@ -23,9 +24,12 @@ internal static class PrøveGrupperEndpoints
     
     private static Action<CreatePrøvegruppeModel, IPrøvegruppeService, CancellationToken> CreatePrøveGruppe()
     {
-        return (CreatePrøvegruppeModel prøveGruppe, IPrøvegruppeService prøveGruppeService,
-            CancellationToken cancellationToken) =>
+        return (prøveGruppe, prøveGruppeService,
+            cancellationToken) =>
         {
+            var elevIds = prøveGruppe.ElevIds.Select(id => (ElevId)id);
+            prøveGruppeService.CreateAsync((PrøveId) prøveGruppe.PrøveId, (LærerId) prøveGruppe.LærerId, elevIds,
+                cancellationToken);
             Results.Accepted();
         };
     }
