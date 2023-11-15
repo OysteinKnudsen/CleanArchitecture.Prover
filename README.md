@@ -30,7 +30,7 @@ Strukturen i repoet i "src"-mappen er som følger:
 - Navigèr til `src\Web` og skriv `dotnet run` etterfulgt av enter:
 
 ```
-~\clean-architecture\src\Web> dotnet run
+~\CleanArchitecture.Prover\src\Web> dotnet run
 ```
 
 - Noe som dette bør vises i konsollet:
