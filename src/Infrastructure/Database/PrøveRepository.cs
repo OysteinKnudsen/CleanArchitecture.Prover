@@ -1,35 +1,22 @@
-using System.Reflection;
-using System.Text.Json;
 using CleanArchitecture.Prover.Application.Prøver;
 using CleanArchitecture.Prover.Application.Prøver.Exceptions;
 using CleanArchitecture.Prover.Domain.Entities;
 using CleanArchitecture.Prover.Domain.ValueTypes;
-using CleanArchitecture.Prover.Infrastructure.Database.Models;
 
 namespace CleanArchitecture.Prover.Infrastructure.Database;
 
 internal class PrøveRepository : IPrøveRepository
 {
-    private readonly IEnumerable<JsonPrøve>? _prøver;
-
-    public PrøveRepository()
+    private readonly IEnumerable<Prøve> _prøver = new[]
     {
-        var stream =
-            Assembly.GetAssembly(typeof(PrøveRepository))!.GetManifestResourceStream(
-                "CleanArchitecture.Prover.Infrastructure.Data.prøver.json");
-        var streamReader = new StreamReader(stream!);
-        var json = streamReader.ReadToEnd();
-        _prøver = JsonSerializer.Deserialize<IEnumerable<JsonPrøve>>(json,
-            new JsonSerializerOptions { PropertyNameCaseInsensitive = false });
-    }
+        new Prøve(PrøveId.From(1), PrøveNavn.From("Engelsk 8.trinn"),new PrøvePeriode(DateTimeOffset.Now, DateTimeOffset.Now + TimeSpan.FromDays(32)), Trinn.From(8), Fag.Engelsk),
+        new Prøve(PrøveId.From(2), PrøveNavn.From("Matematikk 5.trinn"),new PrøvePeriode(DateTimeOffset.Now, DateTimeOffset.Now + TimeSpan.FromDays(32)), Trinn.From(5), Fag.Matematikk),
+        new Prøve(PrøveId.From(3), PrøveNavn.From("Norsk 2.trinn"),new PrøvePeriode(DateTimeOffset.Now, DateTimeOffset.Now + TimeSpan.FromDays(32)), Trinn.From(2), Fag.Norsk),
+    };
 
     public Task<IEnumerable<Prøve>> GetAllAsync(CancellationToken cancellationToken)
     {
-        var prøver = _prøver is null
-            ? Enumerable.Empty<Prøve>()
-            : _prøver.Select(GetPrøve);
-
-        return Task.FromResult(prøver);
+        return Task.FromResult(_prøver);
     }
 
     public Task<Prøve> GetByIdAsync(PrøveId prøveId, CancellationToken cancellationToken)
@@ -38,20 +25,10 @@ internal class PrøveRepository : IPrøveRepository
         {
             throw new PrøveNotFoundException(prøveId);
         }
-        var foundPrøve = _prøver.FirstOrDefault(jsonPrøve => jsonPrøve.Id == prøveId.Id);
+        
+        var foundPrøve = _prøver.FirstOrDefault(prove => prove.Id == prøveId.Id);
         return foundPrøve is null
             ? throw new PrøveNotFoundException(prøveId)
-            : Task.FromResult(GetPrøve(foundPrøve));
-
-    }
-
-    private static Prøve GetPrøve(JsonPrøve jsonPrøve)
-    {
-        return new Prøve(
-            (PrøveId)jsonPrøve.Id,
-            (PrøveNavn)jsonPrøve.Navn,
-            new PrøvePeriode(jsonPrøve.PrøvePeriode.Start, jsonPrøve.PrøvePeriode.Slutt),
-            (Trinn)jsonPrøve.Trinn,
-            FagFactory.GetFag(jsonPrøve.Fag));
+            : Task.FromResult(foundPrøve);
     }
 }
