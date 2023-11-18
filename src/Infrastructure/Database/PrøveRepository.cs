@@ -1,5 +1,3 @@
-using System.Reflection;
-using System.Text.Json;
 using CleanArchitecture.Prover.Application.Prøver;
 using CleanArchitecture.Prover.Application.Prøver.Exceptions;
 using CleanArchitecture.Prover.Domain.Entities;
@@ -10,18 +8,45 @@ namespace CleanArchitecture.Prover.Infrastructure.Database;
 
 internal class PrøveRepository : IPrøveRepository
 {
-    private readonly IEnumerable<JsonPrøve>? _prøver;
-
-    public PrøveRepository()
+    private readonly IEnumerable<InMemoryPrøve>? _prøver = new List<InMemoryPrøve>
     {
-        var stream =
-            Assembly.GetAssembly(typeof(PrøveRepository))!.GetManifestResourceStream(
-                "CleanArchitecture.Prover.Infrastructure.Data.prøver.json");
-        var streamReader = new StreamReader(stream!);
-        var json = streamReader.ReadToEnd();
-        _prøver = JsonSerializer.Deserialize<IEnumerable<JsonPrøve>>(json,
-            new JsonSerializerOptions { PropertyNameCaseInsensitive = false });
-    }
+        new()
+        {
+            Id = 1,
+            Navn = "Prøve i matte 10. trinn 2023",
+            PrøvePeriode = new InMemoryPrøvePeriode
+            {
+                Start = new DateTimeOffset(new DateTime(2023, 10, 01)),
+                Slutt = new DateTimeOffset(new DateTime(2023, 10, 15))
+            },
+            Trinn = 10,
+            Fag = "Matematikk"
+        },
+        new()
+        {
+            Id = 2,
+            Navn = "Prøve i norsk 10. trinn 2023",
+            PrøvePeriode = new InMemoryPrøvePeriode
+            {
+                Start = new DateTimeOffset(new DateTime(2023, 10, 01)),
+                Slutt = new DateTimeOffset(new DateTime(2023, 10, 15))
+            },
+            Trinn = 10,
+            Fag = "Norsk"
+        },
+        new()
+        {
+            Id = 3,
+            Navn = "Prøve i engelsk 10. trinn 2023",
+            PrøvePeriode = new InMemoryPrøvePeriode
+            {
+                Start = new DateTimeOffset(new DateTime(2023, 10, 01)),
+                Slutt = new DateTimeOffset(new DateTime(2023, 10, 15))
+            },
+            Trinn = 10,
+            Fag = "Engelsk"
+        }
+    };
 
     public Task<IEnumerable<Prøve>> GetAllAsync(CancellationToken cancellationToken)
     {
@@ -45,13 +70,13 @@ internal class PrøveRepository : IPrøveRepository
 
     }
 
-    private static Prøve GetPrøve(JsonPrøve jsonPrøve)
+    private static Prøve GetPrøve(InMemoryPrøve inMemoryPrøve)
     {
         return new Prøve(
-            (PrøveId)jsonPrøve.Id,
-            (PrøveNavn)jsonPrøve.Navn,
-            new PrøvePeriode(jsonPrøve.PrøvePeriode.Start, jsonPrøve.PrøvePeriode.Slutt),
-            (Trinn)jsonPrøve.Trinn,
-            FagFactory.GetFag(jsonPrøve.Fag));
+            (PrøveId)inMemoryPrøve.Id,
+            (PrøveNavn)inMemoryPrøve.Navn,
+            new PrøvePeriode(inMemoryPrøve.PrøvePeriode.Start, inMemoryPrøve.PrøvePeriode.Slutt),
+            (Trinn)inMemoryPrøve.Trinn,
+            FagFactory.GetFag(inMemoryPrøve.Fag));
     }
 }

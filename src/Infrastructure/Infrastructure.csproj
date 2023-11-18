@@ -20,9 +20,6 @@
 
     <ItemGroup>
       <None Remove="Data\prøver.json" />
-      <EmbeddedResource Include="Data\prøver.json">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </EmbeddedResource>
     </ItemGroup>
 
 </Project>
