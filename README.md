@@ -23,6 +23,7 @@ Strukturen i repoet i "src"-mappen er som følger:
 
 - .NET 8.0 https://dotnet.microsoft.com/en-us/download
 - Editor (Visual studio code, Visual Studio, Rider)
+- dotnet dev-sertifikat; for å installere et slikt sertifikat: `dotnet dev-certs https --trust`
 
 ## Kjøre applikasjonen
 
@@ -48,7 +49,8 @@ info: Microsoft.Hosting.Lifetime[0]
       Content root path: C:\projects\faggruppe\CleanArchitecture.Prover\src\Web
 ```
 
-- OpenAPI-spec: `https://localhost:7209/swagger/index.html` 
+- OpenAPI-spec https: `https://localhost:7209/swagger/index.html` 
+- OpenAPI-spec http: `https://localhost:5136/swagger/index.html` 
 
 # Oppgaver i workshopen
 - (Hent prøver: En liste med alle tilgjengelige prøver)
