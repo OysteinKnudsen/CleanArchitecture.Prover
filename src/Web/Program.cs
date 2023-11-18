@@ -28,6 +28,4 @@ app
     .AddPrøveGrupperEndpoints()
     .AddSkoleEndpoints();
 
-
-app.UseHttpsRedirection();
 app.Run();
