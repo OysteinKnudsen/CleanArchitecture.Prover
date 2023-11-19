@@ -3,6 +3,8 @@ using CleanArchitecture.Prover.Domain.ValueTypes;
 
 namespace CleanArchitecture.Prover.Application.Prøver;
 
+// Burde denne filen ligge inne i "Services" mappen? Dersom man skal ha interfaces
+// samlet kunne man kanskje hatt en "Interfaces/Abstractions" mappe?
 public interface IPrøveService
 {
     Task<IEnumerable<Prøve>> GetAllAsync(CancellationToken cancellationToken);
