@@ -22,7 +22,7 @@ internal static class PrøverEndpoints
         app.MapPost("api/prøver", CreatePrøve())
             .WithTags("Prøver")
             .WithName("CreatePrøve")
-            .Produces((int)HttpStatusCode.Accepted);
+            .Produces((int)HttpStatusCode.Created);
 
         app.MapPut("api/prøver/{prøveId}/elev/{elevId}", UpdateElev())
             .WithTags("Prøver")
@@ -49,12 +49,12 @@ internal static class PrøverEndpoints
         };
     }
     
-    private static Action<CreatePrøveModel, IPrøveService, CancellationToken> CreatePrøve()
+    private static Func<CreatePrøveModel, IPrøveService, CancellationToken, Task<IResult>> CreatePrøve()
     {
-        return (CreatePrøveModel prøve, IPrøveService prøveService, CancellationToken cancellationToken) =>
+        return async (prøve, prøveService, cancellationToken) =>
         {
-            //TODO: Implement required changes in prøveService
-            Results.Accepted();
+            await prøveService.CreateAsync(new PrøveNavn(prøve.Navn), new Trinn(prøve.Trinn), (Fag)prøve.Fag, prøve.FraDato, prøve.TilDato, cancellationToken);
+            return Results.Created();
         };
     }
     
