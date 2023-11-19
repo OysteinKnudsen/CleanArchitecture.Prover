@@ -1,3 +1,3 @@
 namespace CleanArchitecture.Prover.Web.Models;
 
-public record UpdatePrøvegruppeModel;
+public record UpdatePrøvegruppeModel(int Prøvegruppestatus);

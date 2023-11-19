@@ -2,6 +2,6 @@ namespace CleanArchitecture.Prover.Domain.ValueTypes;
 
 public enum PrøvegruppeStatus
 {
-    ÅpnetForGjennomføring = 0,
-    StengtForGjennomføring = 1
+    StengtForGjennomføring = 0,
+    ÅpnetForGjennomføring = 1
 }

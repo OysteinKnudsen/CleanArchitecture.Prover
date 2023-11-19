@@ -3,9 +3,11 @@ using CleanArchitecture.Prover.Application.Prøvegrupper;
 using CleanArchitecture.Prover.Application.Prøvegrupper.Services;
 using CleanArchitecture.Prover.Application.Prøver;
 using CleanArchitecture.Prover.Application.Prøver.Exceptions;
+using CleanArchitecture.Prover.Domain.Entities;
 using CleanArchitecture.Prover.Domain.ValueTypes;
 using CleanArchitecture.Prover.Web.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CleanArchitecture.Prover.Web.Endpoints;
 
@@ -13,21 +15,25 @@ internal static class PrøvegrupperEndpoints
 {
     public static IEndpointRouteBuilder AddPrøvegrupperEndpoints(this IEndpointRouteBuilder app)
     {
+        app.MapGet("api/prøvegrupper", GetPrøvegrupper())
+            .WithTags("Prøvegrupper")
+            .WithName("GetPrøvegrupper")
+            .Produces<IEnumerable<PrøvegruppeViewModel>>();
+        
         app.MapGet("api/prøvegrupper/{id}", GetPrøvegruppe())
             .WithTags("Prøvegrupper")
             .WithName("GetPrøvegruppe")
-            .Produces<PrøvegruppeViewModel>()
-            .Produces((int) HttpStatusCode.NotFound);
+            .Produces<PrøvegruppeViewModel>();
 
         app.MapPost("api/prøvegrupper", CreatePrøvegruppe())
             .WithTags("Prøvegrupper")
             .WithName("CreatePrøvegruppe")
             .Produces((int) HttpStatusCode.Created);
 
-        app.MapPut("api/prøvegrupper/{id}", UpdatePrøvegruppeStatus())
+        app.MapPatch("api/prøvegrupper/{id}", UpdatePrøvegruppeStatus())
             .WithTags("Prøvegrupper")
             .WithName("UpdatePrøvegruppe")
-            .Produces((int)HttpStatusCode.NoContent);
+            .Produces<PrøvegruppeViewModel>();
 
         return app;
     }
@@ -37,25 +43,37 @@ internal static class PrøvegrupperEndpoints
         return async (prøveGruppe, prøveGruppeService, cancellationToken) =>
         {
                 var elever = prøveGruppe.Elever.Select(e => new ElevId(e));
-                var created = await prøveGruppeService.CreateAsync(new PrøveId(prøveGruppe.PrøveId), new LærerId(prøveGruppe.LærerId), elever,
+                await prøveGruppeService.CreateAsync(new PrøveId(prøveGruppe.PrøveId), new LærerId(prøveGruppe.LærerId), elever,
                     cancellationToken);
-                return Results.Created(new Uri(string.Empty), PrøvegruppeViewModel.From(created));
+                return Results.Created();
         };
     }
     
-    private static Action<int, UpdatePrøvegruppeModel, IPrøvegruppeService, CancellationToken> UpdatePrøvegruppeStatus()
+    private static Func<int, UpdatePrøvegruppeModel, IPrøvegruppeService, CancellationToken, Task<IResult>> UpdatePrøvegruppeStatus()
     {
-        return (int id, UpdatePrøvegruppeModel prøveGruppe, IPrøvegruppeService prøveGruppeService, CancellationToken cancellationToken) =>
+        return async (int id, UpdatePrøvegruppeModel prøveGruppe, IPrøvegruppeService prøveGruppeService, CancellationToken cancellationToken) =>
         {
-            Results.NoContent();
+            var updatedPrøvegruppe = await prøveGruppeService.UpdateStatusAsync(new PrøvegruppeId(id), (PrøvegruppeStatus)prøveGruppe.Prøvegruppestatus, cancellationToken);
+            return Results.Ok(updatedPrøvegruppe);
         };
     }
     
-    private static Action<int, IPrøvegruppeService, CancellationToken> GetPrøvegruppe()
+    private static Func<int, IPrøvegruppeService, CancellationToken, Task<IResult>> GetPrøvegruppe()
     {
-        return (int id, IPrøvegruppeService prøveGruppeService, CancellationToken cancellationToken) =>
+        return async (id, prøveGruppeService, cancellationToken) =>
         {
-            Results.NoContent();
+            var provegruppe = await prøveGruppeService.GetByIdAsync(new PrøvegruppeId(id), cancellationToken);
+            return Results.Ok(provegruppe);
+        };
+    }
+    
+    
+    private static Func<IPrøvegruppeService, CancellationToken, Task<IResult>> GetPrøvegrupper()
+    {
+        return async (prøveGruppeService, cancellationToken) =>
+        {
+            var provegrupper = await prøveGruppeService.GetAllAsync(cancellationToken);
+            return Results.Ok(provegrupper);
         };
     }
 }
