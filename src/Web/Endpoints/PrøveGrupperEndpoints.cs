@@ -1,40 +1,49 @@
 using System.Net;
+using CleanArchitecture.Prover.Application.Prøvegrupper.Services;
 using CleanArchitecture.Prover.Application.Prøver;
 using CleanArchitecture.Prover.Web.Models;
 
 namespace CleanArchitecture.Prover.Web.Endpoints;
 
-internal static class PrøveGrupperEndpoints
+internal static class PrøvegrupperEndpoints
 {
-    public static IEndpointRouteBuilder AddPrøveGrupperEndpoints(this IEndpointRouteBuilder app)
+    public static IEndpointRouteBuilder AddPrøvegrupperEndpoints(this IEndpointRouteBuilder app)
     {
-        app.MapPost("api/prøvegrupper", CreatePrøveGruppe())
+        app.MapPost("api/prøvegrupper", CreatePrøvegruppe())
             .WithTags("PrøveGrupper")
             .WithName("CreatePrøveGruppe")
-            .Produces((int)HttpStatusCode.Accepted);
+            .Produces((int)HttpStatusCode.Created);
 
-        app.MapPut("api/prøvegrupper/{id}", UpdatePrøveGruppeStatus())
+        app.MapPatch("api/prøvegrupper/{id}", UpdatePrøvegruppeStatus())
             .WithTags("PrøveGrupper")
             .WithName("UpdatePrøveGruppeStatus")
-            .Produces((int)HttpStatusCode.NoContent);
+            .Produces<PrøvegruppeViewModel>();
 
         return app;
     }
     
-    private static Action<CreatePrøvegruppeModel, IPrøvegruppeService, CancellationToken> CreatePrøveGruppe()
+    private static Func<CreatePrøvegruppeModel, IPrøvegruppeService, CancellationToken, IResult> CreatePrøvegruppe()
     {
         return (CreatePrøvegruppeModel prøveGruppe, IPrøvegruppeService prøveGruppeService,
             CancellationToken cancellationToken) =>
         {
-            Results.Accepted();
+            /*
+             * TODO: Definer CreatePrøvegruppeModel med nødvendig data for å opprette en prøvegruppe
+             * og implementer CreateAsync i prøveGruppeService. 
+             */
+            return Results.Created();
         };
     }
     
-    private static Action<int, UpdatePrøvegruppeModel, IPrøvegruppeService, CancellationToken> UpdatePrøveGruppeStatus()
+    private static Func<int, UpdatePrøvegruppeModel, IPrøvegruppeService, CancellationToken, IResult> UpdatePrøvegruppeStatus()
     {
         return (int id, UpdatePrøvegruppeModel prøveGruppe, IPrøvegruppeService prøveGruppeService, CancellationToken cancellationToken) =>
         {
-            Results.NoContent();
+            /*
+             * TODO: Definer UpdatePrøvegruppeModel med nødvendig data for å oppdatere status på en prøvegruppe
+             * og implementer UpdatePrøvegruppeStatus i PrøveGruppeService.
+             */
+            return Results.Ok<PrøvegruppeViewModel>(null);
         };
     }
 }
