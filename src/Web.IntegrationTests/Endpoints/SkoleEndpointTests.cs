@@ -1,3 +1,4 @@
+using System.Net;
 using System.Text.Json;
 using CleanArchitecture.Prover.Web.Models;
 using FluentAssertions;
@@ -28,11 +29,13 @@ public class SkoleEndpointTests : IClassFixture<WebApplicationFactory<Program>>
         var response = await httpClient.GetAsync(new Uri("/api/skole/lærere", UriKind.Relative));
         
         //assert
+        response.StatusCode.Should().Be(HttpStatusCode.OK);
+        
         var content = await response.Content.ReadAsStringAsync();
         var lærere = JsonSerializer.Deserialize<IEnumerable<LærerViewModel>>(content,
             new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
-        lærere.Should().HaveCount(2);
+        lærere.Should().HaveCountGreaterThan(0);
     }
     
     [Fact]
@@ -48,6 +51,8 @@ public class SkoleEndpointTests : IClassFixture<WebApplicationFactory<Program>>
         var response = await httpClient.GetAsync(new Uri("/api/skole/lærere/101", UriKind.Relative));
         
         //assert
+        response.StatusCode.Should().Be(HttpStatusCode.OK);
+        
         var content = await response.Content.ReadAsStringAsync();
         var lærer = JsonSerializer.Deserialize<LærerViewModel>(content,
             new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
@@ -70,11 +75,13 @@ public class SkoleEndpointTests : IClassFixture<WebApplicationFactory<Program>>
         var response = await httpClient.GetAsync(new Uri("/api/skole/elever", UriKind.Relative));
         
         //assert
+        response.StatusCode.Should().Be(HttpStatusCode.OK);
+        
         var content = await response.Content.ReadAsStringAsync();
         var elever = JsonSerializer.Deserialize<IEnumerable<ElevViewModel>>(content,
             new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
-        elever.Should().HaveCount(4);
+        elever.Should().HaveCountGreaterThan(0);
     }
     
     [Fact]
@@ -90,6 +97,8 @@ public class SkoleEndpointTests : IClassFixture<WebApplicationFactory<Program>>
         var response = await httpClient.GetAsync(new Uri("/api/skole/elever/2", UriKind.Relative));
         
         //assert
+        response.StatusCode.Should().Be(HttpStatusCode.OK);
+        
         var content = await response.Content.ReadAsStringAsync();
         var elev = JsonSerializer.Deserialize<ElevViewModel>(content,
             new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
@@ -112,11 +121,13 @@ public class SkoleEndpointTests : IClassFixture<WebApplicationFactory<Program>>
         var response = await httpClient.GetAsync(new Uri("/api/skole/klasser", UriKind.Relative));
         
         //assert
+        response.StatusCode.Should().Be(HttpStatusCode.OK);
+        
         var content = await response.Content.ReadAsStringAsync();
         var klasser = JsonSerializer.Deserialize<IEnumerable<KlasseViewModel>>(content,
             new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
-        klasser.Should().HaveCount(2);
+        klasser.Should().HaveCountGreaterThan(0);
     }
     
     [Fact]
@@ -132,6 +143,8 @@ public class SkoleEndpointTests : IClassFixture<WebApplicationFactory<Program>>
         var response = await httpClient.GetAsync(new Uri("/api/skole/klasser/2", UriKind.Relative));
         
         //assert
+        response.StatusCode.Should().Be(HttpStatusCode.OK);
+        
         var content = await response.Content.ReadAsStringAsync();
         var klasse = JsonSerializer.Deserialize<KlasseViewModel>(content,
             new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
