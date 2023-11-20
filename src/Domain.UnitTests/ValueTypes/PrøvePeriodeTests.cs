@@ -1,36 +1,41 @@
+using System.Diagnostics.CodeAnalysis;
 using CleanArchitecture.Prover.Domain.ValueTypes;
+// ReSharper disable ObjectCreationAsStatement
 
 namespace Domain.UnitTests.ValueTypes;
 
+[SuppressMessage("Performance", "CA1806:Do not ignore method results")]
 public class PrøvePeriodeTests
 {
-    [Test]
+    [Fact]
     public void Constructor_ValidStartAndSlutt_ShouldCreateObject()
     {
         var start = new DateTimeOffset(2021, 1, 1, 0, 0, 0, TimeSpan.Zero);
         var slutt = start.AddDays(30);
 
         var prøvePeriode = new PrøvePeriode(start, slutt);
-
-        Assert.That(prøvePeriode.Slutt, Is.EqualTo(slutt));
+        
         prøvePeriode.Slutt.Should().Be(slutt);
         prøvePeriode.Start.Should().Be(start);
     }
 
-    [Test]
+    [Fact]
     public void Constructor_StartAfterSlutt_ShouldThrowArgumentException()
     {
         var start = new DateTimeOffset(2021, 1, 31, 0, 0, 0, TimeSpan.Zero);
         var slutt = new DateTimeOffset(2021, 1, 1, 0, 0, 0, TimeSpan.Zero);
 
-        Assert.Throws<ArgumentException>(() => new PrøvePeriode(start, slutt));
+        Action act = () => new PrøvePeriode(start, slutt);
+
+        act.Should().Throw<ArgumentException>();
     }
 
-    [Test]
+    [Fact]
     public void Constructor_StartEqualsSlutt_ShouldThrowArgumentException()
     {
         var startAndSlutt = new DateTimeOffset(2021, 1, 1, 0, 0, 0, TimeSpan.Zero);
 
-        Assert.Throws<ArgumentException>(() => new PrøvePeriode(startAndSlutt, startAndSlutt));
+        Action act = () => new PrøvePeriode(startAndSlutt, startAndSlutt);
+        act.Should().Throw<ArgumentException>();
     }
 }
