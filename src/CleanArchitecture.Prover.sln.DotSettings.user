@@ -8,5 +8,6 @@
       &lt;TestId&gt;xUnit::2E47E929-442A-4A0B-9145-AE0A4E540B88::net8.0::Web.IntegrationTests.Endpoints.SkoleEndpointTests.Lærere_IdIs101_LærerWithId01Returned&lt;/TestId&gt;&#xD;
     &lt;/TestAncestor&gt;&#xD;
     &lt;Project Location="C:\projects\faggruppe\CleanArchitecture.Prover\src\Web.IntegrationTests" Presentation="&amp;lt;Tests&amp;gt;\&amp;lt;Web.IntegrationTests&amp;gt;" /&gt;&#xD;
+    &lt;Project Location="C:\projects\faggruppe\CleanArchitecture.Prover\src\Domain.UnitTests" Presentation="&amp;lt;Tests&amp;gt;\&amp;lt;Domain.UnitTests&amp;gt;" /&gt;&#xD;
   &lt;/Or&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
