@@ -51,6 +51,10 @@ internal static class PrøverEndpoints
     
     private static Action<CreatePrøveModel, IPrøveService, CancellationToken> CreatePrøve()
     {
+        // Hint: lurer du på forskjellen på en Func<T1..> og en Action<T1..>?
+        // Func representerer en metode som returnerer en verdi,
+        // mens Action representerer en metode som ikke returnerer en verdi.
+        
         return (CreatePrøveModel prøve, IPrøveService prøveService, CancellationToken cancellationToken) =>
         {
             //TODO: Implement required changes in prøveService
