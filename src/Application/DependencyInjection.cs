@@ -1,4 +1,3 @@
-using CleanArchitecture.Prover.Application.Prøvegrupper;
 using CleanArchitecture.Prover.Application.Prøvegrupper.Services;
 using CleanArchitecture.Prover.Application.Prøver;
 using CleanArchitecture.Prover.Application.Prøver.Services;
