@@ -51,7 +51,11 @@ internal static class PrøverEndpoints
     
     private static Func<CreatePrøveModel, IPrøveService, CancellationToken, Task<IResult>> CreatePrøve()
     {
-        return async (prøve, prøveService, cancellationToken) =>
+        // Hint: lurer du på forskjellen på en Func<T1..> og en Action<T1..>?
+        // Func representerer en metode som returnerer en verdi,
+        // mens Action representerer en metode som ikke returnerer en verdi.
+        
+        return async (CreatePrøveModel prøve, IPrøveService prøveService, CancellationToken cancellationToken) =>
         {
             await prøveService.CreateAsync(new PrøveNavn(prøve.Navn), new Trinn(prøve.Trinn), (Fag)prøve.Fag, prøve.FraDato, prøve.TilDato, cancellationToken);
             return Results.Created();

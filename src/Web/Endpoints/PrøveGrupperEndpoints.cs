@@ -1,17 +1,11 @@
 using System.Net;
-using CleanArchitecture.Prover.Application.Prøvegrupper;
 using CleanArchitecture.Prover.Application.Prøvegrupper.Services;
-using CleanArchitecture.Prover.Application.Prøver;
-using CleanArchitecture.Prover.Application.Prøver.Exceptions;
-using CleanArchitecture.Prover.Domain.Entities;
 using CleanArchitecture.Prover.Domain.ValueTypes;
 using CleanArchitecture.Prover.Web.Models;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
 
 namespace CleanArchitecture.Prover.Web.Endpoints;
 
-internal static class PrøvegrupperEndpoints
+internal static class PrøveGrupperEndpoints
 {
     public static IEndpointRouteBuilder AddPrøvegrupperEndpoints(this IEndpointRouteBuilder app)
     {

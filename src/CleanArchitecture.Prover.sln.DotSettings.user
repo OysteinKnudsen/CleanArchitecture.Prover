@@ -1,6 +1,13 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=694178fc_002D4b56_002D4bf1_002D8790_002Dbdfb822b0a31/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="PrøvePeriodeTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::A208FE38-1977-4560-AD54-1789FDB6C38E::net8.0::Domain.UnitTests.ValueTypes.PrøvePeriodeTests&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=694178fc_002D4b56_002D4bf1_002D8790_002Dbdfb822b0a31/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="PrøvePeriodeTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;Or&gt;
+    &lt;TestAncestor&gt;
+      &lt;TestId&gt;xUnit::A208FE38-1977-4560-AD54-1789FDB6C38E::net8.0::Domain.UnitTests.ValueTypes.PrøvePeriodeTests.Constructor_ValidStartAndSlutt_ShouldCreateObject&lt;/TestId&gt;
+      &lt;TestId&gt;xUnit::2E47E929-442A-4A0B-9145-AE0A4E540B88::net8.0::Web.IntegrationTests.Endpoints.SkoleEndpointTests.Lærere_ListOfLærereReturned&lt;/TestId&gt;
+      &lt;TestId&gt;xUnit::2E47E929-442A-4A0B-9145-AE0A4E540B88::net8.0::Web.IntegrationTests.Endpoints.SkoleEndpointTests.Lærere_IdIs1_LærerWithId1Returned&lt;/TestId&gt;
+      &lt;TestId&gt;xUnit::2E47E929-442A-4A0B-9145-AE0A4E540B88::net8.0::Web.IntegrationTests.Endpoints.SkoleEndpointTests.Lærere_IdIs101_LærerWithId01Returned&lt;/TestId&gt;
+    &lt;/TestAncestor&gt;
+    &lt;Project Location="C:\projects\faggruppe\CleanArchitecture.Prover\src\Web.IntegrationTests" Presentation="&amp;lt;Tests&amp;gt;\&amp;lt;Web.IntegrationTests&amp;gt;" /&gt;
+    &lt;Project Location="C:\projects\faggruppe\CleanArchitecture.Prover\src\Domain.UnitTests" Presentation="&amp;lt;Tests&amp;gt;\&amp;lt;Domain.UnitTests&amp;gt;" /&gt;
+  &lt;/Or&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

@@ -29,3 +29,5 @@ app
     .AddSkoleEndpoints();
 
 app.Run();
+
+public partial class Program{} //required to use WebApplicationFactory in Web.IntegrationTests

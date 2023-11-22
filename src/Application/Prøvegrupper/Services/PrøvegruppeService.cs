@@ -1,9 +1,11 @@
+using CleanArchitecture.Prover.Application.Prøver;
 using CleanArchitecture.Prover.Domain.Entities;
 using CleanArchitecture.Prover.Domain.ValueTypes;
 
 namespace CleanArchitecture.Prover.Application.Prøvegrupper.Services;
 
-public class PrøvegruppeService(IPrøvegruppeRepository prøvegruppeRepository) : IPrøvegruppeService
+public class PrøvegruppeService(IPrøvegruppeRepository prøvegruppeRepository, IPrøveRepository prøveRepository)
+    : IPrøvegruppeService
 {
     public async Task<IEnumerable<Prøvegruppe>> GetAllAsync(CancellationToken cancellationToken)
     {
@@ -15,16 +17,39 @@ public class PrøvegruppeService(IPrøvegruppeRepository prøvegruppeRepository)
         return await prøvegruppeRepository.GetByIdAsync(prøvegruppeId, cancellationToken);
     }
 
-    public async Task<Prøvegruppe> CreateAsync(PrøveId prøveId, LærerId lærerId, IEnumerable<ElevId> elever, CancellationToken cancellationToken)
-    {
-        return await prøvegruppeRepository.CreateAsync(prøveId, lærerId, elever, cancellationToken);
-    }
-
     public async Task<Prøvegruppe> UpdateStatusAsync(PrøvegruppeId prøveGruppeId, PrøvegruppeStatus status, CancellationToken cancellationToken)
     {
+           
+        /*
+         TODO: Implementer oppdatering av status på en prøvegruppe.
+         Regel: en prøvegruppe kan bare åpnes for gjennomføring i prøveperioden.
+         */
+        
         var prøvegruppe = await prøvegruppeRepository.GetByIdAsync(prøveGruppeId, cancellationToken);
+        
         var modifiedProvegruppe = prøvegruppe with { Status = status };
         await prøvegruppeRepository.UpdateAsync(modifiedProvegruppe, cancellationToken);
         return modifiedProvegruppe;
+    }
+
+    public async Task<Prøvegruppe> CreateAsync(PrøveId prøveId, LærerId lærerId, IEnumerable<ElevId> elever, CancellationToken cancellationToken)
+    {
+        /*
+         TODO: Implementer opprettelse av en prøvegruppe.
+         Regel: en prøvegruppe kan bare opprettes for en prøve innenfor prøvens prøveperiode.
+         Regel: En elev kan bare være meldt på en gang til samme prøve. 
+        */
+        
+        return await prøvegruppeRepository.CreateAsync(prøveId, lærerId, elever, cancellationToken);
+    }
+    public Task UpdateElevStatusAsync(PrøvegruppeId prøveGruppeId, ElevId elevId, Gjennomføringsstatus status,
+        CancellationToken cancellationToken)
+    {
+        /*
+         * TODO: Implementer oppdatering av status på en elev i en prøvegruppe.
+         * Regel: En elev kan bare endre status til "Startet" eller "Levert" i prøveperioden.
+         * Regel: En elev kan bare endre status til "Startet" eller "Levert" dersom prøvegruppen er åpen for gjennomføring.
+         */
+        throw new NotImplementedException();
     }
 }

@@ -15,8 +15,16 @@ internal class PrøveService(IPrøveRepository prøveRepository) : IPrøveServic
         return prøveRepository.GetByIdAsync(prøveId, cancellationToken);
     }
 
-    public Task<Prøve> CreateAsync(PrøveNavn navn, Trinn trinn, Fag fag, DateTimeOffset start, DateTimeOffset slutt, CancellationToken cancellationToken)
+    public Task<Prøve> CreateAsync(PrøveNavn navn, Trinn trinn, Fag fag, DateTimeOffset start, DateTimeOffset slutt,
+        CancellationToken cancellationToken)
     {
+        /*
+         * TODO: Implementer opprettelse og lagring av en prøve.
+         * Regel: Trinn skal være mellom 1 og 10
+         * Regel: Fra-dato skal være i fremtiden
+         * Regel: Fra-dato skal være før til-dato
+         */ 
+        
         return prøveRepository.CreateAsync(navn, trinn, fag, new PrøvePeriode(start, slutt), cancellationToken);
     }
 }
