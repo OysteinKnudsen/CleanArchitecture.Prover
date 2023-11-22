@@ -6,6 +6,8 @@
       &lt;TestId&gt;xUnit::2E47E929-442A-4A0B-9145-AE0A4E540B88::net8.0::Web.IntegrationTests.Endpoints.SkoleEndpointTests.Lærere_ListOfLærereReturned&lt;/TestId&gt;
       &lt;TestId&gt;xUnit::2E47E929-442A-4A0B-9145-AE0A4E540B88::net8.0::Web.IntegrationTests.Endpoints.SkoleEndpointTests.Lærere_IdIs1_LærerWithId1Returned&lt;/TestId&gt;
       &lt;TestId&gt;xUnit::2E47E929-442A-4A0B-9145-AE0A4E540B88::net8.0::Web.IntegrationTests.Endpoints.SkoleEndpointTests.Lærere_IdIs101_LærerWithId01Returned&lt;/TestId&gt;
+      &lt;TestId&gt;xUnit::A8C0EA41-871B-4B34-B7E4-21D789C67DED::net8.0::Application.UnitTests.Prøvegrupper.PrøvegruppeServiceTests.UpdateStatusAsync_WhenOutsidePrøveperiode_ThrowsOutsidePrøveperiodeException&lt;/TestId&gt;
+      &lt;TestId&gt;xUnit::A8C0EA41-871B-4B34-B7E4-21D789C67DED::net8.0::Application.UnitTests.Prøvegrupper.PrøvegruppeServiceTests.UpdateStatusAsync_WhenActivePrøveperiode_UpdatesStatus&lt;/TestId&gt;
     &lt;/TestAncestor&gt;
     &lt;Project Location="C:\projects\faggruppe\CleanArchitecture.Prover\src\Web.IntegrationTests" Presentation="&amp;lt;Tests&amp;gt;\&amp;lt;Web.IntegrationTests&amp;gt;" /&gt;
     &lt;Project Location="C:\projects\faggruppe\CleanArchitecture.Prover\src\Domain.UnitTests" Presentation="&amp;lt;Tests&amp;gt;\&amp;lt;Domain.UnitTests&amp;gt;" /&gt;
