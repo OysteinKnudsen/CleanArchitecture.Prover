@@ -1,27 +1,30 @@
 using CleanArchitecture.Prover.Domain.Entities;
 using CleanArchitecture.Prover.Domain.ValueTypes;
 
-namespace CleanArchitecture.Prover.Application.Prøver;
+namespace CleanArchitecture.Prover.Application.Prøvegrupper.Services;
 
-public class PrøvegruppeService : IPrøvegruppeService
+public class PrøvegruppeService(IPrøvegruppeRepository prøvegruppeRepository) : IPrøvegruppeService
 {
-    public Task<IEnumerable<Prøvegruppe>> GetAllAsync(CancellationToken cancellationToken)
+    public async Task<IEnumerable<Prøvegruppe>> GetAllAsync(CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return await prøvegruppeRepository.GetAllAsync(cancellationToken);
     }
 
-    public Task<Prøvegruppe> GetByIdAsync(PrøvegruppeId prøvegruppeId, CancellationToken cancellationToken)
+    public async Task<Prøvegruppe> GetByIdAsync(PrøvegruppeId prøvegruppeId, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return await prøvegruppeRepository.GetByIdAsync(prøvegruppeId, cancellationToken);
     }
 
-    public Task CreateAsync(PrøveId prøveId, LærerId lærerId, IEnumerable<ElevId> elever, CancellationToken cancellationToken)
+    public async Task<Prøvegruppe> CreateAsync(PrøveId prøveId, LærerId lærerId, IEnumerable<ElevId> elever, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return await prøvegruppeRepository.CreateAsync(prøveId, lærerId, elever, cancellationToken);
     }
 
-    public Task UpdateStatusAsync(PrøvegruppeId prøveGruppeId, PrøvegruppeStatus status, CancellationToken cancellationToken)
+    public async Task<Prøvegruppe> UpdateStatusAsync(PrøvegruppeId prøveGruppeId, PrøvegruppeStatus status, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var prøvegruppe = await prøvegruppeRepository.GetByIdAsync(prøveGruppeId, cancellationToken);
+        var modifiedProvegruppe = prøvegruppe with { Status = status };
+        await prøvegruppeRepository.UpdateAsync(modifiedProvegruppe, cancellationToken);
+        return modifiedProvegruppe;
     }
 }
