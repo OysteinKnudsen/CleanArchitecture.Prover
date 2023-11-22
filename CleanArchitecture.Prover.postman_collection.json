@@ -1,0 +1,69 @@
+{
+	"info": {
+		"_postman_id": "70e0fb7a-82c5-4fcf-a771-1290b669964f",
+		"name": "CleanArchitecture.Prover",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22520567",
+		"_collection_link": "https://pas-prover.postman.co/workspace/My-Workspace~07e078f9-3ec6-4b53-8818-f227840ecd17/collection/22520567-70e0fb7a-82c5-4fcf-a771-1290b669964f?action=share&source=collection_link&creator=22520567"
+	},
+	"item": [
+		{
+			"name": "Prøver",
+			"item": [
+				{
+					"name": "Create prøve",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Get all prøver",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Prøvegrupper",
+			"item": [
+				{
+					"name": "GET all prøvegrupper",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "POST New prøvegruppe",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "GET Prøvegruppe by Id",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH Update prøvegruppe status (åpne/lukk prøve)",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
