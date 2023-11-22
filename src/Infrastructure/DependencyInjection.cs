@@ -10,6 +10,13 @@ namespace CleanArchitecture.Prover.Infrastructure;
 
 public static class DependencyInjection
 {
+    /*
+     * Når en klasse krever en avhengighet, injiseres den automatisk av DI-kontaineren
+     * basert på konfigurasjonen i IServiceCollection. DI-kontaineren håndterer
+     * altså opprettelse og levetid av avhengigheter. Dette bidrar til "loose coupling".
+     *
+     * Hint: Har du opprettet et nytt repository? Husk at du må registrere det i DI-kontaineren.
+     */
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddHttpClient();

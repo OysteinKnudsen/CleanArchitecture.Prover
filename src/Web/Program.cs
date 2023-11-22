@@ -25,7 +25,7 @@ if (app.Environment.IsDevelopment())
 //add endpoints
 app
     .AddPrøverEndpoints()
-    .AddPrøveGrupperEndpoints()
+    .AddPrøvegrupperEndpoints()
     .AddSkoleEndpoints();
 
 app.Run();

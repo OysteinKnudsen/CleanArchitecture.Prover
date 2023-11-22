@@ -1,5 +1,12 @@
 using CleanArchitecture.External.SkoleAPI.Data.Services;
 
+/*
+ * ################################################################################
+ * # Dette er en ekstern tjeneste som du ikke skal bry deg om implementasjonen av.#
+ * ################################################################################
+ */
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
