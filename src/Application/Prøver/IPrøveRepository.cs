@@ -7,4 +7,5 @@ public interface IPrøveRepository
 {
     public Task<IEnumerable<Prøve>> GetAllAsync(CancellationToken cancellationToken);
     public Task<Prøve> GetByIdAsync(PrøveId prøveId, CancellationToken cancellationToken);
+    public Task<Prøve> CreateAsync(PrøveNavn navn, Trinn trinn, Fag fag, PrøvePeriode prøvePeriode, CancellationToken cancellationToken);
 }
