@@ -5,6 +5,6 @@ namespace CleanArchitecture.Prover.Application.Prøver;
 
 public interface IPrøveRepository
 {
-    public Task<IEnumerable<Prøve>> GetAllAsync(CancellationToken cancellationToken);
-    public Task<Prøve> GetByIdAsync(PrøveId prøveId, CancellationToken cancellationToken);
+    public Task<IEnumerable<Prøve>> GetAllAsync();
+    public Task<Prøve> GetByIdAsync(PrøveId prøveId);
 }

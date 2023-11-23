@@ -31,41 +31,40 @@ internal static class PrøverEndpoints
         return app;
     }
 
-    private static Func<IPrøveService, CancellationToken, Task<IResult>> GetPrøver()
+    private static Func<IPrøveService, Task<IResult>> GetPrøver()
     {
-        return async (prøveService, cancellationToken) =>
+        return async (prøveService) =>
         {
-            var prøver = await prøveService.GetAllAsync(cancellationToken);
+            var prøver = await prøveService.GetAllAsync();
             return Results.Ok(prøver.Select(PrøveViewModel.From));
         };
     }
 
-    private static Func<int, IPrøveService, CancellationToken, Task<IResult>> GetPrøve()
+    private static Func<int, IPrøveService, Task<IResult>> GetPrøve()
     {
-        return async (id, prøveService, cancellationToken) =>
+        return async (id, prøveService) =>
         {
-            var prøve = await prøveService.GetByIdAsync((PrøveId)id, cancellationToken);
+            var prøve = await prøveService.GetByIdAsync((PrøveId)id);
             return Results.Ok(PrøveViewModel.From(prøve));
         };
     }
     
-    private static Action<CreatePrøveModel, IPrøveService, CancellationToken> CreatePrøve()
+    private static Action<CreatePrøveModel, IPrøveService> CreatePrøve()
     {
         // Hint: lurer du på forskjellen på en Func<T1..> og en Action<T1..>?
         // Func representerer en metode som returnerer en verdi,
         // mens Action representerer en metode som ikke returnerer en verdi.
         
-        return (CreatePrøveModel prøve, IPrøveService prøveService, CancellationToken cancellationToken) =>
+        return (CreatePrøveModel prøve, IPrøveService prøveService) =>
         {
             //TODO: Implement required changes in prøveService
             Results.Accepted();
         };
     }
     
-    private static Action<int, int, UpdateElevModel, IPrøveService, CancellationToken> UpdateElev()
+    private static Action<int, int, UpdateElevModel, IPrøveService> UpdateElev()
     {
-        return (int prøveId, int elevId, UpdateElevModel elev, IPrøveService prøveService,
-            CancellationToken cancellationToken) =>
+        return (int prøveId, int elevId, UpdateElevModel elev, IPrøveService prøveService) =>
         {
             //TODO: Implement required changes in prøveService
             Results.NoContent();

@@ -14,12 +14,12 @@ internal class PrøveRepository : IPrøveRepository
         new Prøve(PrøveId.From(3), PrøveNavn.From("Norsk 2.trinn"),new PrøvePeriode(DateTimeOffset.Now, DateTimeOffset.Now + TimeSpan.FromDays(32)), Trinn.From(2), Fag.Norsk),
     };
 
-    public Task<IEnumerable<Prøve>> GetAllAsync(CancellationToken cancellationToken)
+    public Task<IEnumerable<Prøve>> GetAllAsync()
     {
         return Task.FromResult(_prøver);
     }
 
-    public Task<Prøve> GetByIdAsync(PrøveId prøveId, CancellationToken cancellationToken)
+    public Task<Prøve> GetByIdAsync(PrøveId prøveId)
     {
         if (_prøver is null)
         {

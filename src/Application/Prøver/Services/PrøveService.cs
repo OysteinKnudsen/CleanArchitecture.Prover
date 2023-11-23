@@ -5,18 +5,17 @@ namespace CleanArchitecture.Prover.Application.Prøver.Services;
 
 internal class PrøveService(IPrøveRepository prøveRepository) : IPrøveService
 {
-    public Task<IEnumerable<Prøve>> GetAllAsync(CancellationToken cancellationToken)
+    public Task<IEnumerable<Prøve>> GetAllAsync()
     {
-        return prøveRepository.GetAllAsync(cancellationToken);
+        return prøveRepository.GetAllAsync();
     }
 
-    public Task<Prøve> GetByIdAsync(PrøveId prøveId, CancellationToken cancellationToken)
+    public Task<Prøve> GetByIdAsync(PrøveId prøveId)
     {
-        return prøveRepository.GetByIdAsync(prøveId, cancellationToken);
+        return prøveRepository.GetByIdAsync(prøveId);
     }
 
-    public Task<Prøve> CreateAsync(PrøveNavn navn, Trinn trinn, Fag fag, DateTimeOffset start, DateTimeOffset slutt,
-        CancellationToken cancellationToken)
+    public Task<Prøve> CreateAsync(PrøveNavn navn, Trinn trinn, Fag fag, DateTimeOffset start, DateTimeOffset slutt)
     {
         /*
          * TODO: Implementer opprettelse og lagring av en prøve.

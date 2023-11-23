@@ -35,9 +35,9 @@ internal static class PrøvegrupperEndpoints
         };
     }
     
-    private static Func<int, UpdatePrøvegruppeModel, IPrøvegruppeService, CancellationToken, IResult> UpdatePrøvegruppeStatus()
+    private static Func<int, UpdatePrøvegruppeModel, IPrøvegruppeService, IResult> UpdatePrøvegruppeStatus()
     {
-        return (int id, UpdatePrøvegruppeModel prøveGruppe, IPrøvegruppeService prøveGruppeService, CancellationToken cancellationToken) =>
+        return (int id, UpdatePrøvegruppeModel prøveGruppe, IPrøvegruppeService prøveGruppeService) =>
         {
             /*
              * TODO: Definer UpdatePrøvegruppeModel med nødvendig data for å oppdatere status på en prøvegruppe

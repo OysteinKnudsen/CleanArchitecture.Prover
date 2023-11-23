@@ -5,19 +5,19 @@ namespace CleanArchitecture.Prover.Application.Prøvegrupper.Services;
 
 public class PrøvegruppeService : IPrøvegruppeService
 {
-    public Task<IEnumerable<Prøvegruppe>> GetAllAsync(CancellationToken cancellationToken)
-    {
+    public Task<IEnumerable<Prøvegruppe>> GetAllAsync()
+    {   
         // TODO: Implementer henting av alle prøvegrupper.
         throw new NotImplementedException();
     }
 
-    public Task<Prøvegruppe> GetByIdAsync(PrøvegruppeId prøvegruppeId, CancellationToken cancellationToken)
+    public Task<Prøvegruppe> GetByIdAsync(PrøvegruppeId prøvegruppeId)
     {
         // TODO: Implementer henting av en enkelt prøvegruppe basert på prøvegruppeId.
         throw new NotImplementedException();
     }
 
-    public Task<Prøvegruppe> CreateAsync(PrøveId prøveId, LærerId lærerId, IEnumerable<ElevId> elever, CancellationToken cancellationToken)
+    public Task<Prøvegruppe> CreateAsync(PrøveId prøveId, LærerId lærerId, IEnumerable<ElevId> elever)
     {
         /*
          TODO: Implementer opprettelse av en prøvegruppe.
@@ -28,7 +28,7 @@ public class PrøvegruppeService : IPrøvegruppeService
         throw new NotImplementedException();
     }
 
-    public Task<Prøvegruppe> UpdateStatusAsync(PrøvegruppeId prøveGruppeId, PrøvegruppeStatus status, CancellationToken cancellationToken)
+    public Task<Prøvegruppe> UpdateStatusAsync(PrøvegruppeId prøveGruppeId, PrøvegruppeStatus status)
     {
         
         /*
@@ -39,8 +39,7 @@ public class PrøvegruppeService : IPrøvegruppeService
         throw new NotImplementedException();
     }
 
-    public Task UpdateElevStatusAsync(PrøvegruppeId prøveGruppeId, ElevId elevId, Gjennomføringsstatus status,
-        CancellationToken cancellationToken)
+    public Task UpdateElevStatusAsync(PrøvegruppeId prøveGruppeId, ElevId elevId, Gjennomføringsstatus status)
     {
         /*
          * TODO: Implementer oppdatering av status på en elev i en prøvegruppe.
