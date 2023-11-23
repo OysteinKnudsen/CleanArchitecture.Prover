@@ -108,4 +108,6 @@ fabric.properties
 .idea/
 src/.idea/
 
+#MacOs
+.DS_Store
 # End of https://www.toptal.com/developers/gitignore/api/rider,dotnetcore,git
