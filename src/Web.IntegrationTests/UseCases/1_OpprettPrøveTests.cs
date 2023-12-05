@@ -10,9 +10,9 @@ using Moq;
 
 namespace Web.IntegrationTests.UseCases;
 
-public class OpprettPrøveTests : IClassFixture<WebApplicationFactory<Program>> 
+public class OpprettPrøveTests : IClassFixture<WebApplicationFactory<Program>>
 {
-    private readonly JsonSerializerOptions _jsonSerializerOptions = new JsonSerializerOptions
+    private readonly JsonSerializerOptions _jsonSerializerOptions = new()
         { PropertyNamingPolicy = JsonNamingPolicy.CamelCase, PropertyNameCaseInsensitive = true };
 
     private readonly HttpClient _httpClient;
