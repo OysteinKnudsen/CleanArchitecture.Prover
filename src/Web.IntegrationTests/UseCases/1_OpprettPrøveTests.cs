@@ -43,10 +43,11 @@ public class OpprettPrøveTests : IClassFixture<WebApplicationFactory<Program>>
     {
         //arrange
         var createPrøveModel = new CreatePrøveModel(
-            $"Vårprøve i naturfag for {trinn}.trinn", 
+            $"Vårprøve i norsk for {trinn}.trinn", 
             trinn, 
             _today.AddDays(1),
-            _today.AddDays(10));
+            _today.AddDays(10),
+            "Norsk");
         var createPrøveModelJson = JsonSerializer.Serialize(createPrøveModel, _jsonSerializerOptions);
         var createPrøveModelContent =
             new StringContent(createPrøveModelJson, System.Text.Encoding.UTF8, "application/json-patch+json");
@@ -66,7 +67,8 @@ public class OpprettPrøveTests : IClassFixture<WebApplicationFactory<Program>>
             string.Empty, 
             8,
             _today.AddDays(1),
-            _today.AddDays(10));
+            _today.AddDays(10),
+            "Norsk");
         var createPrøveModelJson = JsonSerializer.Serialize(createPrøveModel, _jsonSerializerOptions);
         var createPrøveModelContent =
             new StringContent(createPrøveModelJson, System.Text.Encoding.UTF8, "application/json-patch+json");
@@ -85,10 +87,11 @@ public class OpprettPrøveTests : IClassFixture<WebApplicationFactory<Program>>
     {
         //arrange
         var createPrøveModel = new CreatePrøveModel(
-            $"Vårprøve i naturfag for {trinn}.trinn", 
+            $"Vårprøve i norsk for {trinn}.trinn", 
             trinn,
             _today.AddDays(1),
-            _today.AddDays(10));
+            _today.AddDays(10),
+            "Norsk");
         var createPrøveModelJson = JsonSerializer.Serialize(createPrøveModel, _jsonSerializerOptions);
         var createPrøveModelContent =
             new StringContent(createPrøveModelJson, System.Text.Encoding.UTF8, "application/json-patch+json");
@@ -105,10 +108,11 @@ public class OpprettPrøveTests : IClassFixture<WebApplicationFactory<Program>>
     {
         //arrange
         var createPrøveModel = new CreatePrøveModel(
-            $"Vårprøve i naturfag for 8.trinn", 
+            $"Vårprøve i norsk for 8.trinn", 
             8,
             _today,
-            _today.AddDays(10));
+            _today.AddDays(10),
+            "Norsk");
         var createPrøveModelJson = JsonSerializer.Serialize(createPrøveModel, _jsonSerializerOptions);
         var createPrøveModelContent =
             new StringContent(createPrøveModelJson, System.Text.Encoding.UTF8, "application/json-patch+json");
@@ -125,10 +129,11 @@ public class OpprettPrøveTests : IClassFixture<WebApplicationFactory<Program>>
     {
         //arrange
         var createPrøveModel = new CreatePrøveModel(
-            $"Vårprøve i naturfag for 8.trinn", 
+            $"Vårprøve i norsk for 8.trinn", 
             8,
             _today.AddDays(1),
-            _today);
+            _today,
+            "Norsk");
         var createPrøveModelJson = JsonSerializer.Serialize(createPrøveModel, _jsonSerializerOptions);
         var createPrøveModelContent =
             new StringContent(createPrøveModelJson, System.Text.Encoding.UTF8, "application/json-patch+json");
