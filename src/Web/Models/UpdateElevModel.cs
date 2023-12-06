@@ -1,3 +1,3 @@
 namespace CleanArchitecture.Prover.Web.Models;
 
-public record UpdateElevModel;
+public record UpdateElevModel(int Gjennomføringsstatus);

@@ -1,5 +1,4 @@
 using System.Net;
-using CleanArchitecture.Prover.Application;
 using CleanArchitecture.Prover.Application.Prøver;
 using CleanArchitecture.Prover.Domain.ValueTypes;
 using CleanArchitecture.Prover.Web.Models;
@@ -25,7 +24,7 @@ internal static class PrøverEndpoints
             .WithName("CreatePrøve")
             .Produces((int)HttpStatusCode.Accepted);
 
-        app.MapPut("api/prøver/{prøveId}/elev/{elevId}", UpdateElev())
+        app.MapPut("api/prøver/{prøveId}/elever/{elevId}", UpdateElev())
             .WithTags("Prøver")
             .WithName("UpdateElev")
             .Produces((int)HttpStatusCode.NoContent);
