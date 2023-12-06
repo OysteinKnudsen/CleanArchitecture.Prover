@@ -6,16 +6,24 @@ namespace Web.IntegrationTests.Data;
 
 internal class FakePrøvegruppeRepository : IPrøvegruppeRepository
 {
-    public static PrøvegruppeId PrøveGruppeMedActivePrøveId = new PrøvegruppeId(12);
-    private readonly List<Prøvegruppe> _prøvegrupper = new List<Prøvegruppe>
+    public static PrøvegruppeId StengtPrøveGruppeMedActivePrøveId = new(12);
+    public static PrøvegruppeId ÅpnetPrøveGruppeMedActivePrøveId = new(12);
+    private readonly List<Prøvegruppe> _prøvegrupper = new()
     {
-        new Prøvegruppe(
-            PrøveGruppeMedActivePrøveId,
+        new(
+            StengtPrøveGruppeMedActivePrøveId,
             new PrøveId(FakePrøveRepository.ActiveExistingPrøveId),
             new LærerId(1),
             new List<Prøvegjennomføring>(),
             PrøvegruppeStatus.StengtForGjennomføring
-            )
+            ),
+        new(
+            ÅpnetPrøveGruppeMedActivePrøveId,
+            new PrøveId(FakePrøveRepository.ActiveExistingPrøveId),
+            new LærerId(1),
+            new List<Prøvegjennomføring>(),
+            PrøvegruppeStatus.ÅpnetForGjennomføring
+        )
     };
         
     public Task<IEnumerable<Prøvegruppe>> GetAllAsync(CancellationToken cancellationToken)

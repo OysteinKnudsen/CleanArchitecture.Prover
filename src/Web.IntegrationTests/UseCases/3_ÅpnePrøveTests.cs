@@ -35,7 +35,7 @@ public class ÅpnePrøveTests : IClassFixture<WebApplicationFactory<Program>>
     }
 
     [Fact]
-    public async Task Prøvegruppe_PrøveIsAktiv_ReturnsOk()
+    public async Task Prøvegruppe_PrøveIsAktivAndStengtForGjennomføring_ReturnsOkAndPrøvegruppeIsÅpnet()
     {
         //arrange
         const int expectedStatus = (int)PrøvegruppeStatus.ÅpnetForGjennomføring;
@@ -46,7 +46,7 @@ public class ÅpnePrøveTests : IClassFixture<WebApplicationFactory<Program>>
         
         //act
         var response =
-            await _httpClient.PatchAsync(new Uri($"/api/prøvegrupper/{FakePrøvegruppeRepository.PrøveGruppeMedActivePrøveId}", UriKind.Relative), updatePrøvegruppeModelContent);
+            await _httpClient.PatchAsync(new Uri($"/api/prøvegrupper/{FakePrøvegruppeRepository.StengtPrøveGruppeMedActivePrøveId}", UriKind.Relative), updatePrøvegruppeModelContent);
         
         //assert
         response.StatusCode.Should().Be(HttpStatusCode.OK);
