@@ -1,14 +1,12 @@
 using System.Net;
 using System.Text.Json;
 using CleanArchitecture.Prover.Application.Prøver;
-using CleanArchitecture.Prover.Domain.Entities;
-using CleanArchitecture.Prover.Domain.ValueTypes;
 using CleanArchitecture.Prover.Web.Models;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
-using Moq;
+using Web.IntegrationTests.Data;
 
 namespace Web.IntegrationTests.UseCases;
 
@@ -17,24 +15,12 @@ public class OpprettPrøvegruppeTests : IClassFixture<WebApplicationFactory<Prog
     private readonly JsonSerializerOptions _jsonSerializerOptions = new()
         { PropertyNamingPolicy = JsonNamingPolicy.CamelCase, PropertyNameCaseInsensitive = true };
     private readonly HttpClient _httpClient;
-    
-    private readonly DateTimeOffset _today = new(new DateTime(2023, 12, 05));
-    private const int ExistingPrøveId = 42;
 
     public OpprettPrøvegruppeTests(WebApplicationFactory<Program> factory)
     {
-        var existingPrøve = new Prøve(
-            new PrøveId(ExistingPrøveId), 
-            new PrøveNavn("En eksisterende prøve"),
-            new PrøvePeriode(_today.AddDays(1), _today.AddDays(10)), 
-            new Trinn(5), 
-            Fag.Matematikk);
-
-        var prøveRepository = Mock.Of<IPrøveRepository>(repository =>
-            repository.GetByIdAsync(new PrøveId(ExistingPrøveId)) == new Task<Prøve>(() => existingPrøve));
         _httpClient = factory.WithWebHostBuilder(builder => builder.ConfigureTestServices(services =>
             {
-                services.AddTransient<IPrøveRepository>(_ => prøveRepository);
+                services.AddTransient<IPrøveRepository>(_ => new FakePrøveRepository());
             }))
             .CreateDefaultClient();
     }
@@ -43,7 +29,7 @@ public class OpprettPrøvegruppeTests : IClassFixture<WebApplicationFactory<Prog
     public async Task Prøvegruppe_PrøveExists_ReturnsCreatedResult()
     {
         //arrange
-        var creatPrøvegruppeModel = new CreatePrøvegruppeModel(ExistingPrøveId);
+        var creatPrøvegruppeModel = new CreatePrøvegruppeModel(FakePrøveRepository.ExistingPrøveId);
         var createPrøvegruppeModelJson = JsonSerializer.Serialize(creatPrøvegruppeModel, _jsonSerializerOptions);
         var createPrøvegruppeModelContent =
             new StringContent(createPrøvegruppeModelJson, System.Text.Encoding.UTF8, "application/json-patch+json");
