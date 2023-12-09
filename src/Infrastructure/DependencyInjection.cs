@@ -1,7 +1,8 @@
+using CleanArchitecture.Prover.Application;
 using CleanArchitecture.Prover.Application.Prøver;
 using CleanArchitecture.Prover.Application.Skole;
 using CleanArchitecture.Prover.Infrastructure.Database;
-using CleanArchitecture.Prover.Infrastructure.Services;
+using CleanArchitecture.Prover.Infrastructure.Providers;
 using CleanArchitecture.Prover.Infrastructure.Services.MemorySkoleService;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,6 +23,7 @@ public static class DependencyInjection
         services.AddHttpClient();
         services.AddTransient<ISkoleService, InMemorySkoleService>();
         services.AddSingleton<IPrøveRepository, PrøveRepository>();
+        services.AddTransient<IDateTimeProvider, DateTimeProvider>();
         return services;
     }
 }

@@ -7,19 +7,12 @@ using Microsoft.AspNetCore.TestHost;
 
 namespace Web.IntegrationTests.Endpoints;
 
-public class SkoleEndpointTests : IClassFixture<WebApplicationFactory<Program>>
+public class SkoleEndpointTests(WebApplicationFactory<Program> factory) : IClassFixture<WebApplicationFactory<Program>>
 {
-    private readonly WebApplicationFactory<Program> _factory;
-
-    public SkoleEndpointTests(WebApplicationFactory<Program> factory)
-    {
-        _factory = factory;
-    }
-
     [Fact]
     public async Task Lærere_2LærereReturned()
     {
-        var httpClient = _factory.WithWebHostBuilder(builder => builder.ConfigureTestServices(services =>
+        var httpClient = factory.WithWebHostBuilder(builder => builder.ConfigureTestServices(services =>
             {
             }))
 
@@ -41,7 +34,7 @@ public class SkoleEndpointTests : IClassFixture<WebApplicationFactory<Program>>
     [Fact]
     public async Task Lærere_IdIs101_LærerWithId01Returned()
     {
-        var httpClient = _factory.WithWebHostBuilder(builder => builder.ConfigureTestServices(services =>
+        var httpClient = factory.WithWebHostBuilder(builder => builder.ConfigureTestServices(services =>
             {
             }))
 
@@ -65,7 +58,7 @@ public class SkoleEndpointTests : IClassFixture<WebApplicationFactory<Program>>
     [Fact]
     public async Task Elever_4EleverReturned()
     {
-        var httpClient = _factory.WithWebHostBuilder(builder => builder.ConfigureTestServices(services =>
+        var httpClient = factory.WithWebHostBuilder(builder => builder.ConfigureTestServices(services =>
             {
             }))
 
@@ -87,7 +80,7 @@ public class SkoleEndpointTests : IClassFixture<WebApplicationFactory<Program>>
     [Fact]
     public async Task Elever_ElevIdIs2_ElevWithId2Returned()
     {
-        var httpClient = _factory.WithWebHostBuilder(builder => builder.ConfigureTestServices(services =>
+        var httpClient = factory.WithWebHostBuilder(builder => builder.ConfigureTestServices(services =>
             {
             }))
 
@@ -111,7 +104,7 @@ public class SkoleEndpointTests : IClassFixture<WebApplicationFactory<Program>>
     [Fact]
     public async Task Klasser_2KlasserReturned()
     {
-        var httpClient = _factory.WithWebHostBuilder(builder => builder.ConfigureTestServices(services =>
+        var httpClient = factory.WithWebHostBuilder(builder => builder.ConfigureTestServices(services =>
             {
             }))
 
@@ -133,7 +126,7 @@ public class SkoleEndpointTests : IClassFixture<WebApplicationFactory<Program>>
     [Fact]
     public async Task Klasser_KLasseIdIs2_KlasserWithId2Returned()
     {
-        var httpClient = _factory.WithWebHostBuilder(builder => builder.ConfigureTestServices(services =>
+        var httpClient = factory.WithWebHostBuilder(builder => builder.ConfigureTestServices(services =>
             {
             }))
 

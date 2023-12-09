@@ -24,7 +24,7 @@ internal static class PrøverEndpoints
             .WithName("CreatePrøve")
             .Produces((int)HttpStatusCode.Accepted);
 
-        app.MapPut("api/prøver/{prøveId}/elev/{elevId}", UpdateElev())
+        app.MapPut("api/prøver/{prøveId}/elever/{elevId}", UpdateElev())
             .WithTags("Prøver")
             .WithName("UpdateElev")
             .Produces((int)HttpStatusCode.NoContent);
@@ -49,7 +49,7 @@ internal static class PrøverEndpoints
         };
     }
     
-    private static Action<CreatePrøveModel, IPrøveService> CreatePrøve()
+    private static Func<CreatePrøveModel, IPrøveService, IResult> CreatePrøve()
     {
         // Hint: lurer du på forskjellen på en Func<T1..> og en Action<T1..>?
         // Func representerer en metode som returnerer en verdi,
@@ -58,16 +58,16 @@ internal static class PrøverEndpoints
         return (CreatePrøveModel prøve, IPrøveService prøveService) =>
         {
             //TODO: Implement required changes in prøveService
-            Results.Accepted();
+            return Results.Accepted();
         };
     }
     
-    private static Action<int, int, UpdateElevModel, IPrøveService> UpdateElev()
+    private static Func<int, int, UpdateElevModel, IPrøveService, IResult> UpdateElev()
     {
         return (int prøveId, int elevId, UpdateElevModel elev, IPrøveService prøveService) =>
         {
             //TODO: Implement required changes in prøveService
-            Results.NoContent();
+            return Results.NoContent();
         };
     }
 }

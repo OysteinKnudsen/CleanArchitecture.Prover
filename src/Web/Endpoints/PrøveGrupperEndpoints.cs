@@ -1,6 +1,5 @@
 using System.Net;
 using CleanArchitecture.Prover.Application.Prøvegrupper.Services;
-using CleanArchitecture.Prover.Application.Prøver;
 using CleanArchitecture.Prover.Web.Models;
 
 namespace CleanArchitecture.Prover.Web.Endpoints;
