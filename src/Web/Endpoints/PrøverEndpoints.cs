@@ -7,6 +7,8 @@ namespace CleanArchitecture.Prover.Web.Endpoints;
 
 internal static class PrøverEndpoints
 {
+    private const string GetPrøveEndpoint = "GetPrøve";
+    
     public static IEndpointRouteBuilder AddPrøverEndpoints(this IEndpointRouteBuilder app)
     {
         app.MapGet("api/prøver", GetPrøver())
@@ -16,7 +18,7 @@ internal static class PrøverEndpoints
         
         app.MapGet("api/prøver/{id}", GetPrøve())
             .WithTags("Prøver")
-            .WithName("GetPrøve")
+            .WithName(GetPrøveEndpoint)
             .Produces<PrøveViewModel>();
 
         app.MapPost("api/prøver", CreatePrøve())
@@ -58,7 +60,8 @@ internal static class PrøverEndpoints
         return (CreatePrøveModel prøve, IPrøveService prøveService) =>
         {
             //TODO: Implement required changes in prøveService
-            return Results.Accepted();
+            int idOfCreatedPrøve = 42; //Use id returned from prøveService
+            return Results.CreatedAtRoute(routeName: GetPrøveEndpoint, routeValues: new { id = idOfCreatedPrøve });
         };
     }
     
