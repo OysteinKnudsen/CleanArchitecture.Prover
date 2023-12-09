@@ -55,6 +55,11 @@ info: Microsoft.Hosting.Lifetime[0]
 # Oppgaver i workshopen
 Nedenfor er en oversikt over oppgavene som skal løses i workshopen.
 Oppgaven din blir å implementere disse. I “Regler”-kolonnen vil det være noen forretningsregler som vi ønsker at systemet skal implementere. Disse reglene er veiledende, ikke bruk veldig mye tid på å implementere alle disse. Men gjerne gjør et forsøk på å implementere minst en forretningsregel som du kan teste ved å mocke andre avhengigheter. 
+
+Den første oppgaven i listen er allerede implementert, slik at du kan se hvordan vi har tenkt at oppgavene skal løses.
+
+🙋‍♀️ **PS**: dersom det er noe som er uklart i oppgavene, eller har du spørsmål til hvordan man burde implementere en oppgave, bare spør oss som holder workshopen! 
+
 <table>
   <caption>
     Oppgaver
@@ -68,7 +73,7 @@ Oppgaven din blir å implementere disse. I “Regler”-kolonnen vil det være n
   </thead>
   <tbody>
     <tr>
-      <td>Opprett prøve</td>
+      <td>Opprett prøve (allerede implementert)</td>
       <td>
         Skoleadministrator kan opprette en prøve. En prøve er satt opp for ett
         trinn, for ett fag i en gitt periode. Prøven skal også ha et navn,
@@ -137,3 +142,41 @@ Oppgaven din blir å implementere disse. I “Regler”-kolonnen vil det være n
     </tr>
   </tbody>
 </table>
+
+## Ekstraoppgaver ⭐️ 
+Har du kommet gjennom alle oppgavene over, fått skrevet noen enhetstester og byttet ut en ekstern tjeneste? Imponerende! Her er noen ekstraoppgaver du kan bryne deg på. Disse har ikke like tydelige rammer som de andre oppgavene, så her er det opp til deg å finne ut hvordan du vil løse dem.
+
+
+<table>
+    <caption>Ekstraoppgaver</caption>
+  <thead>
+    <tr>
+      <th>Oppgave</th>
+      <th>Beskrivelse</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Legg til oppgaver på en prøve</td>
+      <td>
+        En prøve uten oppgaver gir ikke mye mening. Utvid prøven til å inneholde
+        oppgaver. En oppgave består av oppgavetekst, svaralternativer og riktig
+        svar.
+      </td>
+    </tr>
+    <tr>
+        <td>Legg til oppgavesvar for en elev sin prøvegjennomføring</td>
+        <td>
+            Vi må vite hva en elev har svart på prøven. Utvid prøvegjennomføringen til å inneholde oppgavesvar.
+        </td>
+    </tr>
+    <tr>
+        <td>Automatisk vurdering av eleven sin besvarelse</td>
+        <td>
+            Det veldig mye arbeid for lærerne å rette hver prøve manuelt. Legg til automatisk vurdering av eleven sin besvarelse.
+        </td>
+    </tr>
+  </tbody>
+</table>
+
+
