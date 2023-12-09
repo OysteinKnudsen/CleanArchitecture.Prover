@@ -53,12 +53,87 @@ info: Microsoft.Hosting.Lifetime[0]
 - OpenAPI-spec http: `https://localhost:5136/swagger/index.html` 
 
 # Oppgaver i workshopen
-- (Hent prøver: En liste med alle tilgjengelige prøver)
-- (Hent prøver: En prøve basert på en id på selve prøven)
-- Opprett prøve: En skoleadministrator (bruker) kan opprette en prøve 
-- Opprett prøvegruppe: En skoleadministrator kan melde på en gruppe elever til en prøve 
-- Tildel prøvegruppeansvar: En skoleadministrator kan tildele en lærer ansvar for en prøvegruppe
-- Åpne prøve: En prøvegruppeansvarlig lærer kan åpne en prøve for gjennomføring 
-- Start prøve: En elev i en prøvegruppe kan starte prøve
-- Lever prøve: En elev i en prøvegruppe kan levere prøve 
-- Lukk prøve: En prøvegruppeansvarlig kan lukke prøven
+Nedenfor er en oversikt over oppgavene som skal løses i workshopen.
+Oppgaven din blir å implementere disse. I “Regler”-kolonnen vil det være noen forretningsregler som vi ønsker at systemet skal implementere. Disse reglene er veiledende, ikke bruk veldig mye tid på å implementere alle disse. Men gjerne gjør et forsøk på å implementere minst en forretningsregel som du kan teste ved å mocke andre avhengigheter. 
+<table>
+  <caption>
+    Oppgaver
+  </caption>
+  <thead>
+    <tr>
+      <th>Oppgave</th>
+      <th>Beskrivelse</th>
+      <th>Regler (veiledende)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Opprett prøve</td>
+      <td>
+        Skoleadministrator kan opprette en prøve. En prøve er satt opp for ett
+        trinn, for ett fag i en gitt periode. Prøven skal også ha et navn,
+        f.eks. “Vårprøve i naturfag for 8.trinn”.
+      </td>
+      <td>
+        <ul>
+          <li>Trinn skal være mellom 1 og 10</li>
+          <li>Fra-dato skal være i fremtiden</li>
+          <li>Til-dato skal være før fra-dato</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>Opprett en prøvegruppe</td>
+      <td>
+        En skoleadministrator kan melde på en gruppe elever til en prøve. Denne
+        påmeldte gruppen til en prøve danner en prøvegruppe. Prøvegruppen
+        gjennomfører prøven sammen og vil typisk være en klasse på en skole.
+      </td>
+      <td>
+        <ul>
+          <li>
+            En prøvegruppe kan bare opprettes for en prøve innenfor prøvens
+            prøveperiode.
+          </li>
+          <li>En elev kan bare være meldt på en gang til samme prøve.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>Åpne prøve for gjennomføring for en gitt prøvegruppe</td>
+      <td>
+        En prøvegruppeansvarlig kan åpne en prøve for sin prøvegruppe. Når
+        prøvegruppen er åpnet for gjennomføring kan elevene starte prøven.
+      </td>
+      <td>En prøve kan bare åpnes i prøveperioden.</td>
+    </tr>
+    <tr>
+      <td>Lukk prøve for gjennomføring for en gitt prøvegruppe</td>
+      <td>
+        En prøvegruppeansvarlig kan lukke prøven for sin prøvegruppe. Da vil det
+        ikke lenger være mulig for elevene å starte prøven.
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Start prøve for elev</td>
+      <td>En elev kan starte en prøve som eleven er påmeldt.</td>
+      <td>
+        Eleven kan bare starte en prøve som er åpnet for gjennomføring av
+        prøvegruppeansvarlig.
+      </td>
+    </tr>
+    <tr>
+      <td>Lever prøve for elev</td>
+      <td>En elev kan levere prøven som eleven har påbegynt.</td>
+      <td>
+        <ul>
+          <li>En elev kan bare levere en prøve som allerede er åpnet.</li>
+          <li>
+            En elev kan bare levere en prøve som er åpen for gjennomføring.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
