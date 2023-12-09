@@ -54,7 +54,7 @@ info: Microsoft.Hosting.Lifetime[0]
 
 # Oppgaver i workshopen
 Nedenfor er en oversikt over oppgavene som skal løses i workshopen.
-Oppgaven din blir å implementere disse. I “Regler”-kolonnen vil det være noen forretningsregler som vi ønsker at systemet skal implementere. Disse reglene er veiledende, ikke bruk veldig mye tid på å implementere alle disse. Men gjerne gjør et forsøk på å implementere minst en forretningsregel som du kan teste ved å mocke andre avhengigheter. 
+Oppgaven din blir å implementere disse.I “Regler”-kolonnen vil det være noen forretningsregler som vi ønsker at systemet skal implementere. Du må ikke nødvendigvis implementere alle reglene, men vi har på forhånd implementert en del ende-til-ende tester som tester en del av disse forretningsreglene og som verifiserer at selve use-caset fungerer korrekt ved å teste APIet. 
 
 Den første oppgaven i listen er allerede implementert, slik at du kan se hvordan vi har tenkt at oppgavene skal løses.
 
