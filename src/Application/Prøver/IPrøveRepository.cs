@@ -7,5 +7,5 @@ public interface IPrøveRepository
 {
     public Task<IEnumerable<Prøve>> GetAllAsync();
     public Task<Prøve> GetByIdAsync(PrøveId prøveId);
-    public Task<Prøve> CreateAsync(PrøveNavn navn, Trinn trinn, Fag fag, PrøvePeriode prøvePeriode);
+    public Task<Prøve> CreateAsync(Prøve prøve);
 }

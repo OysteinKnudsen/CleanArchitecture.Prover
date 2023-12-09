@@ -6,8 +6,8 @@ namespace Web.IntegrationTests.Data;
 
 internal class FakePrøveRepository : IPrøveRepository
 {
-    public const int ActiveExistingPrøveId = 42;
-    public const int InActiveExistingPrøveId = 24;
+    public const string ActiveExistingPrøveId = "42";
+    public const string InActiveExistingPrøveId = "24";
     public static readonly DateTimeOffset Today = new(new DateTime(2023, 12, 05));
 
     private readonly IEnumerable<Prøve> _prøver = new List<Prøve>
@@ -36,7 +36,7 @@ internal class FakePrøveRepository : IPrøveRepository
         return Task.FromResult(_prøver.First(p => p.Id == prøveId));
     }
 
-    public Task<Prøve> CreateAsync(PrøveNavn navn, Trinn trinn, Fag fag, PrøvePeriode prøvePeriode)
+    public Task<Prøve> CreateAsync(Prøve prøve)
     {
         throw new NotImplementedException();
     }
