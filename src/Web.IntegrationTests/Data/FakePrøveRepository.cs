@@ -35,4 +35,9 @@ internal class FakePrøveRepository : IPrøveRepository
     {
         return Task.FromResult(_prøver.First(p => p.Id == prøveId));
     }
+
+    public Task<Prøve> CreateAsync(PrøveNavn navn, Trinn trinn, Fag fag, PrøvePeriode prøvePeriode)
+    {
+        throw new NotImplementedException();
+    }
 }
