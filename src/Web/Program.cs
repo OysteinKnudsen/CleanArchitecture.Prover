@@ -1,6 +1,8 @@
+using System.Reflection;
 using CleanArchitecture.Prover.Application;
 using CleanArchitecture.Prover.Infrastructure;
 using CleanArchitecture.Prover.Web.Endpoints;
+using FluentValidation;
 using CleanArchitecture.Prover.Web.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,8 +14,8 @@ builder.Services
     .AddTransient<GlobalExceptionHandlerMiddleware>()
     .AddSwaggerGen()
     .AddApplication()
-    .AddInfrastructure(builder.Configuration);
-
+    .AddInfrastructure(builder.Configuration)
+    .AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
 var app = builder.Build();
 

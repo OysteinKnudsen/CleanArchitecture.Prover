@@ -2,6 +2,7 @@ using System.Net;
 using CleanArchitecture.Prover.Application.Prøver;
 using CleanArchitecture.Prover.Domain.ValueTypes;
 using CleanArchitecture.Prover.Web.Models;
+using FluentValidation;
 
 namespace CleanArchitecture.Prover.Web.Endpoints;
 
@@ -11,17 +12,17 @@ internal static class PrøverEndpoints
     
     public static IEndpointRouteBuilder AddPrøverEndpoints(this IEndpointRouteBuilder app)
     {
-        app.MapGet("api/prøver", GetPrøver())
+        app.MapGet("api/prøver", GetPrøverAsync())
             .WithTags("Prøver")
             .WithName("GetPrøver")
             .Produces<IEnumerable<PrøveViewModel>>();
         
-        app.MapGet("api/prøver/{id}", GetPrøve())
+        app.MapGet("api/prøver/{id}", GetPrøveAsync())
             .WithTags("Prøver")
             .WithName(GetPrøveEndpoint)
             .Produces<PrøveViewModel>();
 
-        app.MapPost("api/prøver", CreatePrøve())
+        app.MapPost("api/prøver", CreatePrøveAsync())
             .WithTags("Prøver")
             .WithName("CreatePrøve")
             .Produces((int)HttpStatusCode.Accepted);
@@ -33,7 +34,7 @@ internal static class PrøverEndpoints
         return app;
     }
 
-    private static Func<IPrøveService, Task<IResult>> GetPrøver()
+    private static Func<IPrøveService, Task<IResult>> GetPrøverAsync()
     {
         return async (prøveService) =>
         {
@@ -42,7 +43,7 @@ internal static class PrøverEndpoints
         };
     }
 
-    private static Func<int, IPrøveService, Task<IResult>> GetPrøve()
+    private static Func<int, IPrøveService, Task<IResult>> GetPrøveAsync()
     {
         return async (id, prøveService) =>
         {
@@ -51,14 +52,20 @@ internal static class PrøverEndpoints
         };
     }
     
-    private static Func<CreatePrøveModel, IPrøveService, Task<IResult>> CreatePrøve()
+    private static Func<CreatePrøveModel, IPrøveService, IValidator<CreatePrøveModel>, Task<IResult>> CreatePrøveAsync()
     {
         // Hint: lurer du på forskjellen på en Func<T1..> og en Action<T1..>?
         // Func representerer en metode som returnerer en verdi,
         // mens Action representerer en metode som ikke returnerer en verdi.
         
-        return async (CreatePrøveModel prøve, IPrøveService prøveService) =>
+        return async (prøve, prøveService, validator) =>
         {
+            var validationResult = await validator.ValidateAsync(prøve);
+            if (!validationResult.IsValid)
+            {
+                return Results.ValidationProblem(validationResult.ToDictionary());
+            }
+            
             try
             {
                 Enum.TryParse<Fag>(prøve.Fag, out var fag);
