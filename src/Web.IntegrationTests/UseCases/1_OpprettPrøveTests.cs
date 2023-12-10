@@ -39,7 +39,7 @@ public class OpprettPrøveTests : IClassFixture<WebApplicationFactory<Program>>
     [InlineData(8)]
     [InlineData(9)]
     [InlineData(10)]
-    public async Task Prøver_PrøveHasNavnAndValidTrinnAndValidPeriod_AcceptedReturned(int trinn)
+    public async Task Prøver_PrøveHasNavnAndValidTrinnAndValidPeriod_CreatedPrøveReturned(int trinn)
     {
         //arrange
         var createPrøveModel = new CreatePrøveModel(
@@ -56,7 +56,19 @@ public class OpprettPrøveTests : IClassFixture<WebApplicationFactory<Program>>
         var response = await _httpClient.PostAsync(new Uri("/api/prøver", UriKind.Relative), createPrøveModelContent);
         
         //assert
-        response.StatusCode.Should().Be(HttpStatusCode.Accepted);
+        response.StatusCode.Should().Be(HttpStatusCode.Created);
+        var createdPrøveUri = response.Headers.Location;
+        var createdPrøveResponse = await _httpClient.GetAsync(createdPrøveUri);
+
+        //assert created prøve is returned
+        createdPrøveResponse.StatusCode.Should().Be(HttpStatusCode.OK);
+        var content = await createdPrøveResponse.Content.ReadAsStringAsync();
+        var createdPrøve = JsonSerializer.Deserialize<PrøveViewModel>(content, _jsonSerializerOptions);
+
+        createdPrøve!.Fag.Should().Be(createPrøveModel.Fag);
+        createdPrøve.Navn.Should().Be(createPrøveModel.Navn);
+        createdPrøve.Start.Should().Be(createPrøveModel.Fra);
+        createdPrøve.Slutt.Should().Be(createPrøveModel.Til);
     }
     
     [Fact]

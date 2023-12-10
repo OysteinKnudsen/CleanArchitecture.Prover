@@ -1,6 +1,7 @@
 using CleanArchitecture.Prover.Application;
 using CleanArchitecture.Prover.Infrastructure;
 using CleanArchitecture.Prover.Web.Endpoints;
+using CleanArchitecture.Prover.Web.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services
     .AddEndpointsApiExplorer()
+    .AddTransient<GlobalExceptionHandlerMiddleware>()
     .AddSwaggerGen()
     .AddApplication()
     .AddInfrastructure(builder.Configuration);
@@ -15,6 +17,7 @@ builder.Services
 
 var app = builder.Build();
 
+app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
