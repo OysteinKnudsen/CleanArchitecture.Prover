@@ -44,5 +44,15 @@ public class OpprettPrøvegruppeTests : IClassFixture<WebApplicationFactory<Prog
         
         //assert
         response.StatusCode.Should().Be(HttpStatusCode.Created);
+        
+        var createdPrøvegruppeUri = response.Headers.Location;
+        var createdPrøvegruppeResponse = await _httpClient.GetAsync(createdPrøvegruppeUri);
+
+        //assert created prøvegruppe is returned
+        createdPrøvegruppeResponse.StatusCode.Should().Be(HttpStatusCode.OK);
+        var content = await createdPrøvegruppeResponse.Content.ReadAsStringAsync();
+        var createdPrøvegruppe = JsonSerializer.Deserialize<PrøvegruppeViewModel>(content, _jsonSerializerOptions);
+
+        createdPrøvegruppe.Should().NotBeNull();
     }
 }
