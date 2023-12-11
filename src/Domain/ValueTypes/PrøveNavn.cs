@@ -13,7 +13,6 @@ public record PrøveNavn
 
         Value = value;
     }
-    public static PrøveNavn From(string value) => new(value);
     public static explicit operator PrøveNavn(string navn) => new(navn);
     public static implicit operator string(PrøveNavn prøveNavn) => prøveNavn.Value;
 }

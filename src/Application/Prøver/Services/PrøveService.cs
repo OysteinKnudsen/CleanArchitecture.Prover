@@ -22,7 +22,7 @@ internal class PrøveService(IPrøveRepository prøveRepository, IDateTimeProvid
             throw new ArgumentException("Start of PrøvePeriode has to be in the future",nameof(prøvePeriode));
         }
         
-        var newPrøve = new Prøve(PrøveId.From(Guid.NewGuid().ToString()), navn, prøvePeriode, trinn, fag);
+        var newPrøve = new Prøve(new PrøveId(Guid.NewGuid().ToString()), navn, prøvePeriode, trinn, fag);
         var createdProve = await prøveRepository.CreateAsync(newPrøve);
         return createdProve;
     }
