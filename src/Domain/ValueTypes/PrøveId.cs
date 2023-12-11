@@ -1,8 +1,7 @@
 namespace CleanArchitecture.Prover.Domain.ValueTypes;
 
-public record PrøveId(int Id)
+public record PrøveId(string Id)
 {
-    public static PrøveId From(int id) => new PrøveId(id);
-    public static explicit operator PrøveId(int id) => new(id);
-    public static implicit operator int(PrøveId prøveId) => prøveId.Id;
+    public static explicit operator PrøveId(string id) => new(id);
+    public static implicit operator string(PrøveId prøveId) => prøveId.Id;
 }

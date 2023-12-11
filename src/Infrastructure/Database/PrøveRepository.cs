@@ -9,9 +9,9 @@ internal class PrøveRepository : IPrøveRepository
 {
     private readonly IList<Prøve> _prøver = new List<Prøve>
     {
-        new (PrøveId.From(1), PrøveNavn.From("Engelsk 8.trinn"),new PrøvePeriode(DateTimeOffset.Now, DateTimeOffset.Now + TimeSpan.FromDays(32)), Trinn.From(8), Fag.Engelsk),
-        new (PrøveId.From(2), PrøveNavn.From("Matematikk 5.trinn"),new PrøvePeriode(DateTimeOffset.Now, DateTimeOffset.Now + TimeSpan.FromDays(32)), Trinn.From(5), Fag.Matematikk),
-        new (PrøveId.From(3), PrøveNavn.From("Norsk 2.trinn"),new PrøvePeriode(DateTimeOffset.Now, DateTimeOffset.Now + TimeSpan.FromDays(32)), Trinn.From(2), Fag.Norsk),
+        new (new PrøveId("a9aef14a-8ed9-4028-ae00-0ddf75cabb10"), new PrøveNavn("Engelsk 8.trinn"),new PrøvePeriode(DateTimeOffset.Now, DateTimeOffset.Now + TimeSpan.FromDays(32)), new Trinn(8), Fag.Engelsk),
+        new (new PrøveId("c3ac1cc0-f743-4e94-a0f8-c20daba06156"), new PrøveNavn("Matematikk 5.trinn"),new PrøvePeriode(DateTimeOffset.Now, DateTimeOffset.Now + TimeSpan.FromDays(32)), new Trinn(5), Fag.Matematikk),
+        new (new PrøveId("a089d571-e5f2-436d-91d0-b7f94908295a"), new PrøveNavn("Norsk 2.trinn"),new PrøvePeriode(DateTimeOffset.Now, DateTimeOffset.Now + TimeSpan.FromDays(32)), new Trinn(2), Fag.Norsk),
     };
 
     public Task<IEnumerable<Prøve>> GetAllAsync()
@@ -32,10 +32,9 @@ internal class PrøveRepository : IPrøveRepository
             : Task.FromResult(foundPrøve);
     }
 
-    public Task<Prøve> CreateAsync(PrøveNavn navn, Trinn trinn, Fag fag, PrøvePeriode prøvePeriode)
+    public Task<Prøve> CreateAsync(Prøve prøve)
     {
-        var newProve = new Prøve(new PrøveId(_prøver.Count+1), navn, prøvePeriode, trinn, fag);
-        _prøver.Add(newProve);
-        return Task.FromResult(newProve);
+        _prøver.Add(prøve);
+        return Task.FromResult(prøve);
     }
 }

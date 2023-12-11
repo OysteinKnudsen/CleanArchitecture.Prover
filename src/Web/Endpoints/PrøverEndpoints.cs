@@ -42,7 +42,7 @@ internal static class PrøverEndpoints
         };
     }
 
-    private static Func<int, IPrøveService, Task<IResult>> GetPrøve()
+    private static Func<string, IPrøveService, Task<IResult>> GetPrøve()
     {
         return async (id, prøveService) =>
         {
@@ -63,7 +63,9 @@ internal static class PrøverEndpoints
             {
                 Enum.TryParse<Fag>(prøve.Fag, out var fag);
                 var createdProve = await prøveService.CreateAsync(
-                    new PrøveNavn(prøve.Navn), new Trinn(prøve.Trinn), fag,
+                    new PrøveNavn(prøve.Navn), 
+                    new Trinn(prøve.Trinn), 
+                    fag,
                     new PrøvePeriode(prøve.Fra, prøve.Til));
                 return Results.CreatedAtRoute(routeName: GetPrøveEndpoint, routeValues: createdProve.Id);
             }
