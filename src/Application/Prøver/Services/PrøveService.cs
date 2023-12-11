@@ -3,7 +3,7 @@ using CleanArchitecture.Prover.Domain.ValueTypes;
 
 namespace CleanArchitecture.Prover.Application.Prøver.Services;
 
-internal class PrøveService(IPrøveRepository prøveRepository) : IPrøveService
+internal class PrøveService(IPrøveRepository prøveRepository, IDateTimeProvider dateTimeProvider) : IPrøveService
 {
     public Task<IEnumerable<Prøve>> GetAllAsync()
     {
@@ -15,15 +15,13 @@ internal class PrøveService(IPrøveRepository prøveRepository) : IPrøveServic
         return prøveRepository.GetByIdAsync(prøveId);
     }
 
-    public Task<Prøve> CreateAsync(PrøveNavn navn, Trinn trinn, Fag fag, DateTimeOffset start, DateTimeOffset slutt)
+    public async Task<Prøve> CreateAsync(PrøveNavn navn, Trinn trinn, Fag fag, PrøvePeriode prøvePeriode)
     {
-        /*
-         * TODO: Implementer opprettelse og lagring av en prøve.
-         * Regel: Trinn skal være mellom 1 og 10
-         * Regel: Fra-dato skal være i fremtiden
-         * Regel: Fra-dato skal være før til-dato
-         */ 
-        
-        throw new NotImplementedException();
+        if (prøvePeriode.Start <= dateTimeProvider.Now())
+        {
+            throw new ArgumentException("Start of PrøvePeriode has to be in the future",nameof(prøvePeriode));
+        }
+        var createdProve = await prøveRepository.CreateAsync(navn, trinn, fag, prøvePeriode);
+        return createdProve;
     }
 }

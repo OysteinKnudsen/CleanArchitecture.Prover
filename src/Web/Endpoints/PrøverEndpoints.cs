@@ -51,17 +51,26 @@ internal static class PrøverEndpoints
         };
     }
     
-    private static Func<CreatePrøveModel, IPrøveService, IResult> CreatePrøve()
+    private static Func<CreatePrøveModel, IPrøveService, Task<IResult>> CreatePrøve()
     {
         // Hint: lurer du på forskjellen på en Func<T1..> og en Action<T1..>?
         // Func representerer en metode som returnerer en verdi,
         // mens Action representerer en metode som ikke returnerer en verdi.
         
-        return (CreatePrøveModel prøve, IPrøveService prøveService) =>
+        return async (CreatePrøveModel prøve, IPrøveService prøveService) =>
         {
-            //TODO: Implement required changes in prøveService
-            int idOfCreatedPrøve = 42; //Use id returned from prøveService
-            return Results.CreatedAtRoute(routeName: GetPrøveEndpoint, routeValues: new { id = idOfCreatedPrøve });
+            try
+            {
+                Enum.TryParse<Fag>(prøve.Fag, out var fag);
+                var createdProve = await prøveService.CreateAsync(
+                    new PrøveNavn(prøve.Navn), new Trinn(prøve.Trinn), fag,
+                    new PrøvePeriode(prøve.Fra, prøve.Til));
+                return Results.CreatedAtRoute(routeName: GetPrøveEndpoint, routeValues: createdProve.Id);
+            }
+            catch (ArgumentException e)
+            {
+                return Results.BadRequest(e.Message);
+            }
         };
     }
     

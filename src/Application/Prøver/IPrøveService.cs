@@ -7,5 +7,5 @@ public interface IPrøveService
 {
     Task<IEnumerable<Prøve>> GetAllAsync();
     Task<Prøve> GetByIdAsync(PrøveId prøveId);
-    Task<Prøve> CreateAsync(PrøveNavn navn,Trinn trinn, Fag fag, DateTimeOffset start, DateTimeOffset slutt);
+    Task<Prøve> CreateAsync(PrøveNavn navn,Trinn trinn, Fag fag, PrøvePeriode prøvePeriode);
 }
