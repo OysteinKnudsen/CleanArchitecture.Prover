@@ -1,4 +1,7 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=0f32d8c3_002Db7a2_002D404c_002D94b4_002D800f8d62fd6f/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from 1_OpprettPrøveTests.cs" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;ProjectFolder&gt;2E47E929-442A-4A0B-9145-AE0A4E540B88/d:UseCases&lt;/ProjectFolder&gt;
+&lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=694178fc_002D4b56_002D4bf1_002D8790_002Dbdfb822b0a31/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="PrøvePeriodeTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;Or&gt;&#xD;
     &lt;TestAncestor&gt;&#xD;
