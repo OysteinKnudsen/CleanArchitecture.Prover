@@ -84,4 +84,13 @@ internal static class PrøverEndpoints
             return Results.NoContent();
         };
     }
+    
+    private static Func<int, int, IPrøveService, IResult> GetElev()
+    {
+        return (int prøveId, int elevId, IPrøveService prøveService) =>
+        {
+            //TODO: Implement required changes in prøveService
+            return Results.Ok();
+        };
+    }
 }
