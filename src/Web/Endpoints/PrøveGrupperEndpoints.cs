@@ -21,10 +21,9 @@ internal static class PrøvegrupperEndpoints
         return app;
     }
     
-    private static Func<CreatePrøvegruppeModel, IPrøvegruppeService, CancellationToken, IResult> CreatePrøvegruppe()
+    private static Func<CreatePrøvegruppeModel, IPrøvegruppeService, IResult> CreatePrøvegruppe()
     {
-        return (CreatePrøvegruppeModel prøveGruppe, IPrøvegruppeService prøveGruppeService,
-            CancellationToken cancellationToken) =>
+        return (CreatePrøvegruppeModel prøveGruppe, IPrøvegruppeService prøveGruppeService) =>
         {
             /*
              * TODO: Definer CreatePrøvegruppeModel med nødvendig data for å opprette en prøvegruppe
