@@ -45,15 +45,8 @@ internal class FakePrøvegruppeRepository : IPrøvegruppeRepository
         return Task.FromResult(_prøvegrupper.First(p => p.PrøvegruppeId == prøvegruppeId));
     }
 
-    public Task<Prøvegruppe> CreateAsync(PrøveId prøveId, LærerId lærerId, IEnumerable<ElevId> elever)
+    public Task<Prøvegruppe> CreateAsync(Prøvegruppe prøvegruppe)
     {
-        var prøvegruppe = new Prøvegruppe(
-            new PrøvegruppeId(new Random().Next()),
-            prøveId,
-            lærerId,
-            new List<Prøvegjennomføring>(),
-            PrøvegruppeStatus.StengtForGjennomføring
-        );
         _prøvegrupper.Add(prøvegruppe);
 
         return Task.FromResult(prøvegruppe);

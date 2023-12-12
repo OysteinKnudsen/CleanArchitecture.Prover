@@ -7,6 +7,6 @@ public interface IPrøvegruppeRepository
 {
     Task<IEnumerable<Prøvegruppe>> GetAllAsync();
     Task<Prøvegruppe> GetByIdAsync(PrøvegruppeId prøvegruppeId);
-    Task<Prøvegruppe> CreateAsync(PrøveId prøveId, LærerId lærerId, IEnumerable<ElevId> elever);
+    Task<Prøvegruppe> CreateAsync(Prøvegruppe prøvegruppe);
     Task UpdateAsync(Prøvegruppe prøvegruppe);
 }
