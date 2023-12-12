@@ -17,8 +17,20 @@ internal static class PrøvegrupperEndpoints
             .WithTags("PrøveGrupper")
             .WithName("UpdatePrøveGruppeStatus")
             .Produces<PrøvegruppeViewModel>();
+        
+        app.MapGet("api/prøvegrupper/{id}", GetPrøvegruppe())
+            .WithTags("PrøveGrupper")
+            .WithName("GetPrøvegruppe")
+            .Produces<PrøvegruppeViewModel>();
 
         return app;
+    }
+    private static Func<int, IPrøvegruppeService, IResult> GetPrøvegruppe()
+    {
+        return (prøvegruppeId, prøvegruppeService) =>
+        {
+            return Results.Ok();
+        };
     }
     
     private static Func<CreatePrøvegruppeModel, IPrøvegruppeService, IResult> CreatePrøvegruppe()

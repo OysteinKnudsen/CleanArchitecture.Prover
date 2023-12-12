@@ -44,13 +44,23 @@ public class StartPrøveTests  : IClassFixture<WebApplicationFactory<Program>>
         
         //act
         var response =
-            await _httpClient.PatchAsync(
+            await _httpClient.PutAsync(
                 new Uri(
                     $"/api/prøver/{FakePrøveRepository.ActiveExistingPrøveId}/elever/{FakePrøvegruppeRepository.PåmeldtElevId}",
                     UriKind.Relative), updateElevModelContent);
         
-        //assert
+        //assert response and that the elev has received correct status for gjennomføring
         response.StatusCode.Should().Be(HttpStatusCode.NoContent);
+
+        var prøvegruppeResponse =
+            await _httpClient.GetAsync(
+                $"/api/prøvegrupper/{FakePrøvegruppeRepository.ÅpnetPrøveGruppeMedActivePrøveId}");
+        prøvegruppeResponse.StatusCode.Should().Be(HttpStatusCode.OK);
+        var content = await prøvegruppeResponse.Content.ReadAsStringAsync();
+        var prøvegruppe = JsonSerializer.Deserialize<PrøvegruppeViewModel>(content, _jsonSerializerOptions);
+        var elevGjennomføring =
+            prøvegruppe!.Prøvegjennomføringer.First(model => model.ElevId == FakePrøvegruppeRepository.PåmeldtElevId);
+        elevGjennomføring.Gjennomføringsstatus.Should().Be("Startet");
     }
     
     [Fact]

@@ -50,8 +50,16 @@ public class ÅpnePrøveTests : IClassFixture<WebApplicationFactory<Program>>
         
         //assert
         response.StatusCode.Should().Be(HttpStatusCode.OK);
-        var content = await response.Content.ReadAsStringAsync();
-        var viewModel = JsonSerializer.Deserialize<PrøvegruppeViewModel>(content, _jsonSerializerOptions);
-        viewModel!.PrøvegruppeStatus.Should().Be(expectedStatus);
+        var updatedPrøvegruppeResponse =
+            await _httpClient.GetAsync(
+                $"/api/prøvegrupper/{FakePrøvegruppeRepository.StengtPrøveGruppeMedActivePrøveId}");
+
+        //assert prøvegruppe is updated
+        updatedPrøvegruppeResponse.StatusCode.Should().Be(HttpStatusCode.OK);
+        var updatedContent = await updatedPrøvegruppeResponse.Content.ReadAsStringAsync();
+        var updatedPrøvegruppe = JsonSerializer.Deserialize<PrøvegruppeViewModel>(updatedContent, _jsonSerializerOptions);
+
+        updatedPrøvegruppe.Should().NotBeNull();
+        updatedPrøvegruppe!.PrøvegruppeStatus.Should().Be(expectedStatus);
     }
 }
