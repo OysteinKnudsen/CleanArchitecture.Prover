@@ -42,7 +42,7 @@ internal static class PrøverEndpoints
         };
     }
 
-    private static Func<string, IPrøveService, Task<IResult>> GetPrøve()
+    private static Func<int, IPrøveService, Task<IResult>> GetPrøve()
     {
         return async (id, prøveService) =>
         {

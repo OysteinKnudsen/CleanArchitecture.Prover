@@ -35,17 +35,17 @@ internal class FakePrøvegruppeRepository : IPrøvegruppeRepository
         )
     };
 
-    public Task<IEnumerable<Prøvegruppe>> GetAllAsync(CancellationToken cancellationToken)
+    public Task<IEnumerable<Prøvegruppe>> GetAllAsync()
     {
         return Task.FromResult(_prøvegrupper.AsEnumerable());
     }
 
-    public Task<Prøvegruppe> GetByIdAsync(PrøvegruppeId prøvegruppeId, CancellationToken cancellationToken)
+    public Task<Prøvegruppe> GetByIdAsync(PrøvegruppeId prøvegruppeId)
     {
         return Task.FromResult(_prøvegrupper.First(p => p.PrøvegruppeId == prøvegruppeId));
     }
 
-    public Task<Prøvegruppe> CreateAsync(PrøveId prøveId, LærerId lærerId, IEnumerable<ElevId> elever, CancellationToken cancellationToken)
+    public Task<Prøvegruppe> CreateAsync(PrøveId prøveId, LærerId lærerId, IEnumerable<ElevId> elever)
     {
         var prøvegruppe = new Prøvegruppe(
             new PrøvegruppeId(new Random().Next()),
@@ -59,7 +59,7 @@ internal class FakePrøvegruppeRepository : IPrøvegruppeRepository
         return Task.FromResult(prøvegruppe);
     }
 
-    public Task UpdateAsync(Prøvegruppe prøvegruppe, CancellationToken cancellationToken)
+    public Task UpdateAsync(Prøvegruppe prøvegruppe)
     {
         _prøvegrupper.RemoveAll(pg => pg.PrøvegruppeId == prøvegruppe.PrøvegruppeId);
         _prøvegrupper.Add(prøvegruppe);

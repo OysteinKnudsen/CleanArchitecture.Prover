@@ -25,7 +25,6 @@ internal static class PrøvegrupperEndpoints
 
         return app;
     }
-
     private static Func<int, IPrøvegruppeService, IResult> GetPrøvegruppe()
     {
         return (prøvegruppeId, prøvegruppeService) =>
@@ -33,7 +32,7 @@ internal static class PrøvegrupperEndpoints
             return Results.Ok();
         };
     }
-
+    
     private static Func<CreatePrøvegruppeModel, IPrøvegruppeService, IResult> CreatePrøvegruppe()
     {
         return (CreatePrøvegruppeModel prøveGruppe, IPrøvegruppeService prøveGruppeService) =>
