@@ -54,7 +54,7 @@ info: Microsoft.Hosting.Lifetime[0]
 ```
 
 - OpenAPI-spec https: `https://localhost:7209/swagger/index.html` 
-- OpenAPI-spec http: `https://localhost:5136/swagger/index.html` 
+- OpenAPI-spec http: `http://localhost:5136/swagger/index.html` 
 
 # Oppgaver i workshopen
 Nedenfor er en oversikt over oppgavene som skal løses i workshopen.
