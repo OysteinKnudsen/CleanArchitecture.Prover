@@ -99,6 +99,16 @@ Vi har også implementert litt ulike tester som det kan anbefales å ta en titt 
         </ul>
       </td>
     </tr>
+      <tr>
+      <td>Hente opp prøve</td>
+      <td>
+        Etter at en prøve er blitt opprettet, skal den kunne hentes opp basert på prøve id-en.
+      </td>
+      <td>
+        <ul>
+        </ul>
+      </td>
+    </tr>
     <tr>
       <td>Opprett en prøvegruppe</td>
       <td>
@@ -113,6 +123,8 @@ Vi har også implementert litt ulike tester som det kan anbefales å ta en titt 
             prøveperiode.
           </li>
           <li>En elev kan bare være meldt på en gang til samme prøve.</li>
+          <li>Eleven må eksistere i det "eksterne" skolesystemet.</li>
+          <li>Hint: Det finnes en ISkoleService som kan brukes til å sjekke om elever finnes</li>
         </ul>
       </td>
     </tr>

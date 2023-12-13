@@ -46,8 +46,9 @@ internal static class PrøverEndpoints
     {
         return async (id, prøveService) =>
         {
-            var prøve = await prøveService.GetByIdAsync((PrøveId)id);
-            return Results.Ok(PrøveViewModel.From(prøve));
+            // Hint: Hent prøven fra PrøveService basert på id-en
+            // Returner en PrøveViewModel
+            return Results.Ok();
         };
     }
     

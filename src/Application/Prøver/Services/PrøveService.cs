@@ -7,23 +7,16 @@ internal class PrøveService(IPrøveRepository prøveRepository, IDateTimeProvid
 {
     public Task<IEnumerable<Prøve>> GetAllAsync()
     {
-        return prøveRepository.GetAllAsync();
+        throw new NotImplementedException();
     }
 
     public Task<Prøve> GetByIdAsync(PrøveId prøveId)
     {
-        return prøveRepository.GetByIdAsync(prøveId);
+        throw new NotImplementedException();
     }
 
     public async Task<Prøve> CreateAsync(PrøveNavn navn, Trinn trinn, Fag fag, PrøvePeriode prøvePeriode)
     {
-        if (prøvePeriode.Start <= dateTimeProvider.Now())
-        {
-            throw new ArgumentException("Start of PrøvePeriode has to be in the future",nameof(prøvePeriode));
-        }
-        
-        var newPrøve = new Prøve(new PrøveId(new Random().Next()), navn, prøvePeriode, trinn, fag);
-        var createdProve = await prøveRepository.SaveAsync(newPrøve);
-        return createdProve;
+        throw new NotImplementedException();
     }
 }
