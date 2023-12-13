@@ -23,7 +23,7 @@ internal class PrøveService(IPrøveRepository prøveRepository, IDateTimeProvid
         }
         
         var newPrøve = new Prøve(new PrøveId(new Random().Next()), navn, prøvePeriode, trinn, fag);
-        var createdProve = await prøveRepository.CreateAsync(newPrøve);
+        var createdProve = await prøveRepository.SaveAsync(newPrøve);
         return createdProve;
     }
 }

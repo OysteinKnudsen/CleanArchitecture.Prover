@@ -6,6 +6,8 @@ namespace CleanArchitecture.Prover.Web.Endpoints;
 
 internal static class PrøvegrupperEndpoints
 {
+    private const string GetPrøvegruppeEndpoint = "GetPrøvegruppe";
+
     public static IEndpointRouteBuilder AddPrøvegrupperEndpoints(this IEndpointRouteBuilder app)
     {
         app.MapPost("api/prøvegrupper", CreatePrøvegruppe())
@@ -17,37 +19,35 @@ internal static class PrøvegrupperEndpoints
             .WithTags("PrøveGrupper")
             .WithName("UpdatePrøveGruppeStatus")
             .Produces<PrøvegruppeViewModel>();
-        
+
         app.MapGet("api/prøvegrupper/{id}", GetPrøvegruppe())
             .WithTags("PrøveGrupper")
-            .WithName("GetPrøvegruppe")
+            .WithName(GetPrøvegruppeEndpoint)
             .Produces<PrøvegruppeViewModel>();
 
         return app;
     }
-    private static Func<int, IPrøvegruppeService, IResult> GetPrøvegruppe()
+
+    private static Func<int, IPrøvegruppeService, Task<IResult>> GetPrøvegruppe()
     {
-        return (prøvegruppeId, prøvegruppeService) =>
-        {
-            return Results.Ok();
-        };
+        return async (prøvegruppeId, prøvegruppeService) => { return Results.Ok(); };
     }
-    
-    private static Func<CreatePrøvegruppeModel, IPrøvegruppeService, IResult> CreatePrøvegruppe()
+
+    private static Func<CreatePrøvegruppeModel, IPrøvegruppeService, Task<IResult>> CreatePrøvegruppe()
     {
-        return (CreatePrøvegruppeModel prøveGruppe, IPrøvegruppeService prøveGruppeService) =>
+        return async (CreatePrøvegruppeModel prøveGruppe, IPrøvegruppeService prøveGruppeService) =>
         {
             /*
              * TODO: Definer CreatePrøvegruppeModel med nødvendig data for å opprette en prøvegruppe
-             * og implementer CreateAsync i prøveGruppeService. 
+             * og implementer CreateAsync i prøveGruppeService.
              */
             return Results.Created();
         };
     }
-    
-    private static Func<int, UpdatePrøvegruppeModel, IPrøvegruppeService, IResult> UpdatePrøvegruppeStatus()
+
+    private static Func<int, UpdatePrøvegruppeModel, IPrøvegruppeService, Task<IResult>> UpdatePrøvegruppeStatus()
     {
-        return (int id, UpdatePrøvegruppeModel prøveGruppe, IPrøvegruppeService prøveGruppeService) =>
+        return async (int id, UpdatePrøvegruppeModel prøveGruppe, IPrøvegruppeService prøveGruppeService) =>
         {
             /*
              * TODO: Definer UpdatePrøvegruppeModel med nødvendig data for å oppdatere status på en prøvegruppe

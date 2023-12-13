@@ -6,7 +6,7 @@ namespace CleanArchitecture.Prover.Application.Prøvegrupper.Services;
 public class PrøvegruppeService : IPrøvegruppeService
 {
     public Task<IEnumerable<Prøvegruppe>> GetAllAsync()
-    {   
+    {
         // TODO: Implementer henting av alle prøvegrupper.
         throw new NotImplementedException();
     }
@@ -22,20 +22,19 @@ public class PrøvegruppeService : IPrøvegruppeService
         /*
          TODO: Implementer opprettelse av en prøvegruppe.
          Regel: en prøvegruppe kan bare opprettes for en prøve innenfor prøvens prøveperiode.
-         Regel: En elev kan bare være meldt på en gang til samme prøve. 
+         Regel: En elev kan bare være meldt på en gang til samme prøve.
         */
-        
+
         throw new NotImplementedException();
     }
 
     public Task<Prøvegruppe> UpdateStatusAsync(PrøvegruppeId prøveGruppeId, PrøvegruppeStatus status)
     {
-        
         /*
-         TODO: Implementer oppdatering av status på en prøvegruppe. 
+         TODO: Implementer oppdatering av status på en prøvegruppe.
          Regel: en prøvegruppe kan bare åpnes for gjennomføring i prøveperioden.
          */
-        
+
         throw new NotImplementedException();
     }
 
