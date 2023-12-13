@@ -85,7 +85,7 @@ Vi har også implementert litt ulike tester som det kan anbefales å ta en titt 
   </thead>
   <tbody>
     <tr>
-      <td>Opprett prøve (allerede implementert)</td>
+      <td>Fullfør opprett prøve oppgaven slik at en ny prøve lagres</td>
       <td>
         Skoleadministrator kan opprette en prøve. En prøve er satt opp for ett
         trinn, for ett fag i en gitt periode. Prøven skal også ha et navn,
