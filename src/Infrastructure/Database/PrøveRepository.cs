@@ -32,7 +32,7 @@ internal class PrøveRepository : IPrøveRepository
             : Task.FromResult(foundPrøve);
     }
 
-    public Task<Prøve> CreateAsync(Prøve prøve)
+    public Task<Prøve> SaveAsync(Prøve prøve)
     {
         _prøver.Add(prøve);
         return Task.FromResult(prøve);
